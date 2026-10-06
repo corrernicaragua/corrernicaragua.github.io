@@ -7,14 +7,14 @@
 <meta name="description" content="Cuéntanos cómo corres, caminas o acompañas. Encuesta anónima de 3 a 8 minutos para gente de todas las edades en Nicaragua.">
 <meta name="theme-color" content="#0B0F1A">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://saymond02.github.io/correr-en-nicaragua/">
+<link rel="canonical" href="https://corrernicaragua.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_NI">
 <meta property="og:site_name" content="Correr en Nicaragua">
 <meta property="og:title" content="Cuéntanos cómo corres">
 <meta property="og:description" content="O cómo caminas, o cómo acompañas. Encuesta anónima de 3 a 8 minutos.">
-<meta property="og:url" content="https://saymond02.github.io/correr-en-nicaragua/">
-<meta property="og:image" content="https://saymond02.github.io/correr-en-nicaragua/og.jpg">
+<meta property="og:url" content="https://corrernicaragua.github.io/">
+<meta property="og:image" content="https://corrernicaragua.github.io/og.jpg">
 <meta property="og:image:alt" content="Corredores de todas las edades en una pista, con el texto Cuéntanos cómo corres">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,6 +103,7 @@
   .q { flex: 1; display: flex; flex-direction: column; }
   .band { background: var(--night); border-bottom: 1px solid var(--slate); }
   .band .topbar { padding-top: 8px; }
+  .band .tool { border-color: #6B7894; } /* 3.6:1 sobre la franja: el borde de --edge no llega a 3:1 ahí */
   .band-track { position: relative; height: 46px; }
   .band-track canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .band-cap { display: flex; justify-content: space-between; gap: 12px; padding-block: 2px 12px; font-size: 1rem; color: var(--haze); }
@@ -212,7 +213,7 @@
   'use strict';
 
   // Dirección pública y destino de las respuestas
-  const PUBLIC_URL = 'https://saymond02.github.io/correr-en-nicaragua/';
+  const PUBLIC_URL = 'https://corrernicaragua.github.io/';
   const SUPABASE_URL = 'https://mwiroczcgigmapzkzeba.supabase.co';
   // Clave publicable de Supabase: es pública a propósito. Con ella solo se puede ENVIAR una respuesta (RLS, migración 0010).
   const SUPABASE_KEY = 'sb_publishable_bZ6aEB26mibNyVdc3Q4JkA_N3Jl2dBI';

@@ -2,8 +2,8 @@
 
 Encuesta anónima sobre cómo se vive el correr (y el caminar) en Nicaragua, para todas las edades.
 
-- Encuesta: https://saymond02.github.io/correr-en-nicaragua/
-- Cartel con QR para imprimir: https://saymond02.github.io/correr-en-nicaragua/cartel.html
+- Encuesta: https://corrernicaragua.github.io/
+- Cartel con QR para imprimir: https://corrernicaragua.github.io/cartel.html
 
 ## Cómo funciona
 
