@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cartel · Correr en Nicaragua</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Figtree:wght@500;600;700&display=swap">
+<style>
+  /* Cartel para imprimir en carta o A4 y pegar en la entrega de kits, parques o grupos de caminata. */
+  :root { --ink: #0B0F1A; --night: #1B2433; --mist: #D9DCE3; --haze: #A6ADBD; --gold: #B08D57; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #3A4458; color: var(--mist); font-family: "Figtree", system-ui, sans-serif; }
+  .tools { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 16px; }
+  .tools button, .tools label { font: 700 1rem/1 "Figtree", sans-serif; padding: 12px 18px; border-radius: 999px; border: 0; background: var(--gold); color: var(--ink); cursor: pointer; }
+  .tools label { background: var(--night); color: var(--mist); display: inline-flex; gap: 8px; align-items: center; }
+  .tools select { font: inherit; background: var(--ink); color: var(--mist); border: 1px solid #56647E; border-radius: 8px; padding: 4px 6px; }
+  .sheet {
+    width: min(100% - 32px, 8.5in); aspect-ratio: 8.5 / 11; margin: 0 auto 32px; background: var(--ink);
+    padding: 7% 8%; display: flex; flex-direction: column; gap: 3.2%; overflow: hidden;
+    box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  }
+  .mark { font: 800 clamp(14px, 2.6vw, 26px)/1 "Big Shoulders Display", sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+  .mark b { color: var(--gold); font-weight: 800; }
+  h1 { margin: 0; font: 900 clamp(48px, 12.5vw, 128px)/0.86 "Big Shoulders Display", sans-serif; text-transform: uppercase; }
+  h1 em { font-style: normal; color: var(--gold); }
+  .lede { margin: 0; font: 500 clamp(16px, 3vw, 30px)/1.3 "Figtree", sans-serif; color: var(--haze); }
+  .lede b { color: var(--mist); font-weight: 700; }
+  .scan { margin-top: auto; display: flex; align-items: center; gap: 6%; }
+  .qr { flex: none; width: 42%; aspect-ratio: 1; background: #fff; border-radius: 4%; padding: 3%; }
+  .qr svg { width: 100%; height: 100%; display: block; }
+  .how { display: grid; gap: 0.6em; font: 600 clamp(15px, 2.7vw, 26px)/1.25 "Figtree", sans-serif; }
+  .how .big { font: 900 clamp(26px, 5.6vw, 56px)/0.95 "Big Shoulders Display", sans-serif; text-transform: uppercase; color: var(--gold); }
+  .how .url { font-size: 0.72em; color: var(--haze); word-break: break-all; }
+  .foot { font: 500 clamp(12px, 2vw, 18px)/1.3 "Figtree", sans-serif; color: var(--haze); }
+  @page { size: letter; margin: 0; }
+  @media print {
+    html, body { background: var(--ink); }
+    .tools { display: none; }
+    .sheet { width: 100vw; height: 100vh; aspect-ratio: auto; margin: 0; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="tools">
+  <label for="canal">El QR cuenta respuestas como
+    <select id="canal">
+      <option value="cartel">cartel (general)</option>
+      <option value="kits">entrega de kits</option>
+      <option value="parque">parque</option>
+      <option value="caminata">grupo de caminata</option>
+      <option value="colegio">colegio o club</option>
+    </select>
+  </label>
+  <button type="button" onclick="window.print()">Imprimir</button>
+</div>
+<main class="sheet">
+  <div class="mark">Correr en <b>Nicaragua</b></div>
+  <h1>Cuéntanos cómo <em>corres</em></h1>
+  <p class="lede">O cómo caminas, o cómo acompañas. <b>Encuesta anónima de 3 a 8 minutos</b> para todas las edades, de niñas y niños a adultos mayores.</p>
+  <div class="scan">
+    <div class="qr" id="qr" role="img" aria-label="Código QR de la encuesta"></div>
+    <div class="how">
+      <span class="big">Escanea con tu cámara</span>
+      <span>Y contéstala aquí mismo, en tu teléfono.</span>
+      <span class="url" id="url"></span>
+    </div>
+  </div>
+  <p class="foot">No pedimos nombre, cédula ni teléfono. Si tienes menos de 13 años, contéstala junto a una persona adulta.</p>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+  const BASE = 'https://saymond02.github.io/correr-en-nicaragua/';
+  const sel = document.getElementById('canal');
+  function draw() {
+    const link = BASE + '?c=' + sel.value;
+    const q = qrcode(0, 'M'); q.addData(link); q.make();
+    document.getElementById('qr').innerHTML = q.createSvgTag({ cellSize: 8, margin: 0, scalable: true });
+    document.getElementById('url').textContent = link.replace('https://', '');
+  }
+  sel.addEventListener('change', draw);
+  draw();
+</script>
+</body>
+</html>
