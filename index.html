@@ -76,11 +76,11 @@
   .tool[aria-pressed="true"] { background: var(--mist); color: var(--ink); border-color: var(--mist); }
   .tool svg { width: 22px; height: 22px; }
   .headline {
-    font: 900 min(19vw, 118px)/0.86 var(--display); text-transform: uppercase;
+    font: 900 min(19vw, 118px)/1 var(--display); /* 1: las tildes de esta letra son altas y se esconden con menos */ text-transform: uppercase;
     letter-spacing: 0.005em; text-wrap: balance; margin-top: 8px;
   }
   .headline em { font-style: normal; color: var(--gold); }
-  .headline.small { font-size: min(13.5vw, 84px); line-height: 0.9; }
+  .headline.small { font-size: min(13.5vw, 84px); line-height: 1; }
   .lede { font-size: 1.15rem; line-height: 1.45; color: var(--haze); max-width: 34ch; }
   .track-space { flex: 1 0 clamp(120px, 24svh, 330px); }
   .facts { display: flex; flex-wrap: wrap; gap: 6px 20px; font-weight: 700; }
@@ -197,6 +197,18 @@
   details.raw pre { margin: 12px 0 0; padding: 14px; border-radius: 12px; background: var(--night); border: 1px solid var(--slate); overflow-x: auto; font: 0.8rem/1.5 ui-monospace, Menlo, Consolas, monospace; }
   .link { background: none; border: 0; padding: 10px 0; color: var(--mist); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; justify-self: start; }
 
+  .promise { font-weight: 600; color: var(--mist); max-width: 40ch; }
+  .promise b { color: var(--gold-hi); font-weight: 700; }
+  .cheer { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 14px; background: rgba(176, 141, 87, 0.14); border: 1px solid rgba(176, 141, 87, 0.45); animation: cheerIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .cheer svg { flex: none; width: 26px; height: 26px; color: var(--gold); }
+  .cheer b { color: var(--gold-hi); }
+  .medal { display: grid; gap: 14px; justify-items: center; text-align: center; padding: 24px 20px; border-radius: 20px; background: var(--night); border: 1px solid var(--slate); }
+  .medal svg { width: 150px; height: auto; display: block; }
+  .medal .stack { justify-items: center; }
+  .medal p { margin-inline: auto; }
+  .medal h2 { font-size: 1.7rem; }
+  @keyframes cheerIn { from { opacity: 0.4; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .cheer { animation: none; } }
   .enter { animation: settle 0.42s cubic-bezier(0.16, 1, 0.3, 1) both; }
   @keyframes settle { from { opacity: 0.35; transform: translateY(12px); } to { opacity: 1; transform: none; } }
   @keyframes blink { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
@@ -227,7 +239,7 @@
 
   const Q = {
     P1: { b: '0', type: 'single', title: '¿En qué departamento vives?', help: 'No hay respuestas correctas. Si no te acuerdas de algo, elige «No me acuerdo».', next: 'P2', options: [
-      o('managua', 'Managua'), o('carazo', 'Carazo (Diriamba, Jinotepe, San Marcos…)'), o('masaya', 'Masaya'), o('granada', 'Granada'),
+      o('managua', 'Managua'), o('carazo', 'Carazo'), o('masaya', 'Masaya'), o('granada', 'Granada'),
       o('leon', 'León o Chinandega'), o('rivas', 'Rivas'), o('norte', 'Norte (Estelí, Matagalpa, Jinotega, Nueva Segovia, Madriz)'),
       o('otro', 'Otro departamento'), o('fuera', 'Vivo fuera de Nicaragua')] },
     P2: { b: '0', type: 'single', required: true, title: '¿Cuántos años tienes?', help: 'Si contestas junto a una niña o un niño, marca su edad.', next: 'P3', def: '25-34', options: [
@@ -425,11 +437,11 @@
   const channelFrom = () => {
     try { const c = (new URLSearchParams(location.search).get('c') || '').toLowerCase().trim(); return /^[a-z0-9_-]{1,40}$/.test(c) ? c : null; } catch (e) { return null; }
   };
-  const state = { view: 'welcome', current: 'P1', answers: {}, history: [], big: false, hint: '', final: null, send: 'idle', shareFallback: false, channel: channelFrom(), clientId: null };
+  const state = { view: 'welcome', current: 'P1', answers: {}, history: [], big: false, hint: '', final: null, send: 'idle', shareFallback: false, channel: channelFrom(), clientId: null, milestones: [], cheer: null, finisherNo: undefined };
   function save() {
     try {
       if (state.view === 'done' || state.view === 'doneKids') { localStorage.removeItem(STORE); return; }
-      localStorage.setItem(STORE, JSON.stringify({ ts: Date.now(), current: state.current, answers: state.answers, history: state.history, big: state.big, channel: state.channel, clientId: state.clientId }));
+      localStorage.setItem(STORE, JSON.stringify({ ts: Date.now(), current: state.current, answers: state.answers, history: state.history, big: state.big, channel: state.channel, clientId: state.clientId, milestones: state.milestones }));
     } catch (e) {}
   }
   function load() {
@@ -437,7 +449,7 @@
       const s = JSON.parse(localStorage.getItem(STORE) || 'null');
       if (!s) return;
       if (!s.ts || Date.now() - s.ts > DRAFT_TTL) { localStorage.removeItem(STORE); return; }
-      if (s.answers && Q[s.current]) Object.assign(state, { current: s.current, answers: s.answers, history: s.history || [], big: !!s.big, channel: state.channel || s.channel || null, clientId: s.clientId || null });
+      if (s.answers && Q[s.current]) Object.assign(state, { current: s.current, answers: s.answers, history: s.history || [], big: !!s.big, channel: state.channel || s.channel || null, clientId: s.clientId || null, milestones: Array.isArray(s.milestones) ? s.milestones : [] });
     } catch (e) {}
   }
   const hasDraft = () => state.history.length > 0 || Object.keys(state.answers).length > 0;
@@ -506,6 +518,7 @@
         else if (res.status >= 400 && res.status < 500) outcome = 'drop'; // rechazada por la base: no reintentar
       } catch (e) { outcome = 'keep'; }
       if (outcome !== 'keep') done.add(item.client_id);
+      if (outcome === 'ok') completeProgress(item);
       if (state.final && item.client_id === state.final.client_id) mineOutcome = outcome;
     }
     writeQueue(readQueue().filter((i) => !done.has(i.client_id)));
@@ -758,6 +771,150 @@
     destroy() { cancelAnimationFrame(this.raf); this.ro.disconnect(); }
   }
 
+  // ───────── Motivación: tiempo que falta, puestos de abastecimiento y medalla de finalista ─────────
+  const SECS_PER_Q = 11;
+  function timeLeft() {
+    const { path } = walk();
+    const left = path.length - Math.max(0, path.indexOf(state.current));
+    if (left <= 1) return 'Última pregunta';
+    return 'Faltan ~' + Math.max(1, Math.round((left * SECS_PER_Q) / 60)) + ' min';
+  }
+  const CHEERS = {
+    quarter: ['Buen ritmo.', 'Ya llevas un cuarto del recorrido.'],
+    half: ['Mitad del recorrido.', 'En la meta te contamos para qué es todo esto.'],
+    last: ['Último tramo.', 'Ya casi cruzas la meta y te llevas tu medalla.']
+  };
+  // Se llama al llegar a una pregunta nueva: deja un mensaje si cruzó un hito que aún no había visto
+  function checkMilestone() {
+    state.cheer = null;
+    if (Q[state.current].type === 'info') return;
+    const { path } = walk();
+    const i = Math.max(0, path.indexOf(state.current)), left = path.length - i, p = i / path.length;
+    const seen = (k) => state.milestones.includes(k);
+    let k = null;
+    if (left <= 3 && path.length > 8 && !seen('last')) k = 'last';
+    else if (p >= 0.5 && !seen('half')) k = 'half';
+    else if (p >= 0.25 && p < 0.5 && !seen('quarter')) k = 'quarter';
+    if (!k) return;
+    state.milestones.push(k);
+    state.cheer = k;
+    setTimeout(() => announce(CHEERS[k].join(' ')), 400);
+  }
+  function cheerBox() {
+    if (!state.cheer) return '';
+    const c = CHEERS[state.cheer];
+    return '<div class="cheer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15" cy="4.5" r="2.3" fill="currentColor"/><path d="M13 8.5l-3 4.5 3.5 2.5-1.5 5.5M10 13l-4 1M13.5 9.5l4 2 2-2.5M16 15.5l3 1.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><p><b>' + c[0] + '</b> ' + c[1] + '</p></div>';
+  }
+
+  // Número de llegada: se pide recién cuando la respuesta final quedó guardada en la base
+  async function completeProgress(item) {
+    try {
+      const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/save_survey_progress', {
+        method: 'POST',
+        headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          p_client_id: item.client_id, p_version: item.version, p_path: item.path, p_channel: item.channel,
+          p_last_question: item.path === 'ninez' ? 'END_KIDS' : 'END', p_answers: item.answers, p_completed: true, p_seq: nextSeq()
+        })
+      });
+      if (!res.ok) return;
+      const n = await res.json();
+      if (state.final && item.client_id === state.final.client_id) { state.finisherNo = typeof n === 'number' ? n : null; updateMedal(); }
+    } catch (e) {}
+  }
+
+  function medalSVG(label, small) {
+    return '<svg viewBox="0 0 200 250" role="img" aria-label="Medalla de finalista' + (label ? ' ' + label : '') + '">' +
+      '<polygon points="56,0 92,0 114,124 78,124" fill="#2E3A4F"/>' +
+      '<polygon points="144,0 108,0 86,124 122,124" fill="#56647E"/>' +
+      '<circle cx="100" cy="170" r="74" fill="#B08D57"/>' +
+      '<circle cx="100" cy="170" r="61" fill="none" stroke="#8C6E40" stroke-width="4"/>' +
+      '<text x="100" y="' + (label ? 186 : 182) + '" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="900" font-size="' + (label ? (label.length > 4 ? 40 : 50) : 34) + '" fill="#0B0F1A">' + (label || 'META') + '</text>' +
+      '<text x="100" y="' + (label ? 208 : 204) + '" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="800" font-size="11" letter-spacing="2" fill="#0B0F1A">FINALISTA</text>' +
+      '</svg>';
+  }
+  function medalText() {
+    const n = state.finisherNo;
+    if (typeof n === 'number') return 'Eres la persona número ' + n + ' en cruzar la meta.';
+    if (state.channel === 'prueba') return 'Medalla de prueba: las pruebas del equipo no reciben número.';
+    if (n === undefined && state.send === 'sending') return 'Calculando tu número de llegada…';
+    return 'Tu número de llegada aparece cuando tus respuestas lleguen.';
+  }
+  function medalBox() {
+    const n = state.finisherNo;
+    return '<div class="medal" id="medal">' + medalSVG(typeof n === 'number' ? '#' + n : '') +
+      '<div class="stack"><h2>Tu medalla de finalista</h2><p id="medal-text">' + medalText() + '</p>' +
+      '<button type="button" class="go" data-act="medal">Guardar para historias</button>' +
+      '<p class="muted">Se guarda como imagen para subirla a tus historias de Instagram.</p></div></div>';
+  }
+  function updateMedal() {
+    const el = document.getElementById('medal');
+    if (el) el.outerHTML = medalBox();
+    if (typeof state.finisherNo === 'number') announce('Eres la persona número ' + state.finisherNo + ' en cruzar la meta.');
+  }
+
+  // Imagen 1080 × 1920 para historias, con espacio para el sticker de enlace
+  async function makeStoryCanvas(n, kids) {
+    for (const f of ['900 200px "Big Shoulders Display"', '800 46px "Big Shoulders Display"', '600 44px Figtree', '700 44px Figtree']) { try { await document.fonts.load(f); } catch (e) {} }
+    const W = 1080, H = 1920, L = 72, cv = document.createElement('canvas');
+    cv.width = W; cv.height = H;
+    const x = cv.getContext('2d');
+    x.fillStyle = '#0B0F1A'; x.fillRect(0, 0, W, H);
+    x.textBaseline = 'alphabetic';
+    x.letterSpacing = '5px'; x.font = '800 46px "Big Shoulders Display"';
+    x.fillStyle = '#D9DCE3'; x.fillText('CORRER EN', L, 262); const w0 = x.measureText('CORRER EN ').width;
+    x.fillStyle = '#B08D57'; x.fillText('NICARAGUA', L + w0, 262);
+    const l1 = kids ? 'LLEGAMOS' : 'LLEGUÉ';
+    x.letterSpacing = '2px'; let size = 210; x.font = '900 ' + size + 'px "Big Shoulders Display"';
+    const widest = Math.max(x.measureText(l1).width, x.measureText('A LA META').width);
+    size = Math.min(210, Math.floor(size * Math.min(1, (W - 2 * L) / widest))); x.font = '900 ' + size + 'px "Big Shoulders Display"';
+    const b1 = 262 + 40 + Math.round(size * 0.97), b2 = b1 + size;
+    x.fillStyle = '#D9DCE3'; x.fillText(l1, L - 4, b1); x.fillText('A LA ', L - 4, b2);
+    x.fillStyle = '#B08D57'; x.fillText('META', L - 4 + x.measureText('A LA ').width, b2);
+    // medalla
+    const cx = W / 2, top = b2 + 56, r = 170, cy = top + 190 + r * 0.55, k = r / 196;
+    x.fillStyle = '#2E3A4F'; x.beginPath(); x.moveTo(cx - 172 * k, top); x.lineTo(cx - 34 * k, top); x.lineTo(cx + 46 * k, cy - r * 0.62); x.lineTo(cx - 92 * k, cy - r * 0.62); x.closePath(); x.fill();
+    x.fillStyle = '#56647E'; x.beginPath(); x.moveTo(cx + 172 * k, top); x.lineTo(cx + 34 * k, top); x.lineTo(cx - 46 * k, cy - r * 0.62); x.lineTo(cx + 92 * k, cy - r * 0.62); x.closePath(); x.fill();
+    x.fillStyle = '#B08D57'; x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.fill();
+    x.strokeStyle = '#8C6E40'; x.lineWidth = 10; x.beginPath(); x.arc(cx, cy, r * 0.83, 0, Math.PI * 2); x.stroke();
+    x.textAlign = 'center'; x.fillStyle = '#0B0F1A'; x.letterSpacing = '0px';
+    const label = typeof n === 'number' ? '#' + n : 'META';
+    x.font = '900 ' + (label.length > 4 ? 104 : 130) + 'px "Big Shoulders Display"'; x.fillText(label, cx, cy + 40);
+    x.letterSpacing = '6px'; x.font = '800 26px Figtree'; x.fillText('FINALISTA', cx, cy + 90);
+    // textos
+    x.letterSpacing = '0px';
+    x.font = '700 46px Figtree'; x.fillStyle = '#D9DCE3';
+    x.fillText(kids ? 'Terminamos la encuesta' : 'Terminé la encuesta', cx, cy + r + 76);
+    x.font = '600 40px Figtree'; x.fillStyle = '#A6ADBD';
+    x.fillText('Correr en Nicaragua · 2026', cx, cy + r + 128);
+    const yCall = cy + r + 214; // con el titular a 210 px queda en ~1430: el recuadro termina antes de la barra de respuesta
+    x.font = '600 44px Figtree'; x.fillStyle = '#D9DCE3'; x.fillText('¿Y tú? Cuéntanos cómo corres', cx, yCall);
+    const bw = 820, bh = 118, bx = (W - bw) / 2, by = yCall + 28;
+    x.setLineDash([16, 12]); x.lineWidth = 4; x.strokeStyle = '#B08D57';
+    x.beginPath(); x.roundRect(bx, by, bw, bh, 59); x.stroke(); x.setLineDash([]);
+    x.font = '700 44px Figtree'; x.fillStyle = '#B08D57'; x.fillText('corrernicaragua.github.io', cx, by + bh / 2 + 15);
+    x.textAlign = 'start';
+    return cv;
+  }
+  async function saveMedal(btn) {
+    const old = btn.textContent; btn.textContent = 'Preparando tu medalla…';
+    try {
+      const cv = await makeStoryCanvas(state.finisherNo, state.view === 'doneKids');
+      const blob = await new Promise((ok) => cv.toBlob(ok, 'image/png'));
+      const file = new File([blob], 'medalla-correr-en-nicaragua.png', { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: 'Mi medalla de finalista', text: inviteText() }).catch(() => {});
+      } else {
+        const url = URL.createObjectURL(blob), a = document.createElement('a');
+        a.href = url; a.download = file.name; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+      }
+      announce('Tu medalla está lista para tus historias.');
+    } catch (e) { announce('No se pudo preparar la imagen. Intenta de nuevo.'); }
+    btn.textContent = old;
+  }
+  if (channelFrom() === 'prueba') window.__medalla = async (n, kids) => (await makeStoryCanvas(n, kids)).toDataURL('image/png');
+
   // ───────── Vistas ─────────
   let scenes = [];
   let lastProgress = 0;
@@ -779,6 +936,7 @@
       '<div class="track-space" aria-hidden="true"></div>' +
       '<div class="wrap stack">' +
         '<ul class="facts"><li>3 a 8 minutos</li><li>Anónima</li></ul>' +
+        '<p class="promise">En la meta te contamos para qué es todo esto <b>y te llevas tu medalla de finalista.</b></p>' +
         '<p class="kidnote">¿Tienes menos de 13 años? Contéstala junto a tu mamá, tu papá o la persona adulta que te cuida.</p>' +
         '<p class="kidnote">Tus respuestas se guardan a medida que avanzas, sin nada que te identifique.</p>' +
         '<div class="actions">' +
@@ -833,9 +991,10 @@
     return '<section class="q enter">' +
       '<header class="band">' + topbar(true) +
         '<div class="wrap"><div class="band-track"><canvas aria-hidden="true"></canvas></div>' +
-        '<div class="band-cap"><b>' + BLOCK[q.b] + '</b><span>Meta</span></div></div>' +
+        '<div class="band-cap"><b>' + BLOCK[q.b] + '</b><span>' + timeLeft() + '</span></div></div>' +
       '</header>' +
       '<div class="wrap qbody">' +
+        cheerBox() +
         '<h1 class="q-title" tabindex="-1" id="qt">' + q.title + '</h1>' +
         (q.help ? '<p class="q-help">' + q.help + '</p>' : '') +
         body +
@@ -882,7 +1041,7 @@
     const raw = state.channel === 'prueba'
       ? '<details class="raw"><summary>Lo que se envió (solo en modo prueba)</summary><pre>' + esc(JSON.stringify(state.final, null, 2)) + '</pre></details>'
       : '';
-    return hero + '<div class="wrap after">' + sendBox() + reveal + again + share + raw + '</div>';
+    return hero + '<div class="wrap after">' + medalBox() + sendBox() + reveal + again + share + raw + '</div>';
   }
 
   function render(dir) {
@@ -924,7 +1083,7 @@
     pushHistory(state.current);
     if (nx === 'END' || nx === 'END_KIDS') {
       state.final = finalAnswers();
-      sendProgress(nx, true);
+      state.finisherNo = undefined; state.cheer = null;
       writeQueue(readQueue().filter((i) => i.client_id !== state.final.client_id).concat([state.final]));
       state.send = 'sending';
       state.view = nx === 'END' ? 'done' : 'doneKids';
@@ -932,7 +1091,7 @@
       flush();
       return;
     }
-    state.current = nx; render(); window.scrollTo(0, 0);
+    state.current = nx; checkMilestone(); render(); window.scrollTo(0, 0);
     sendProgress();
   }
   function goBack() {
@@ -943,7 +1102,7 @@
   }
   function restart() {
     try { localStorage.removeItem(STORE); } catch (e) {}
-    Object.assign(state, { answers: {}, history: [], current: 'P1', hint: '', final: null, send: 'idle', shareFallback: false, view: 'q', clientId: uuid() });
+    Object.assign(state, { answers: {}, history: [], current: 'P1', hint: '', final: null, send: 'idle', shareFallback: false, view: 'q', clientId: uuid(), milestones: [], cheer: null, finisherNo: undefined });
     lastProgress = 0; render(); window.scrollTo(0, 0); sendProgress();
   }
   function pick(v) {
@@ -974,11 +1133,12 @@
       const again = app.querySelector('[data-v="' + v + '"]'); if (again) again.focus({ preventScroll: true });
       return;
     }
-    if (act === 'start') { state.view = 'q'; state.current = 'P1'; state.clientId = uuid(); render(); window.scrollTo(0, 0); sendProgress(); }
+    if (act === 'start') { state.view = 'q'; state.current = 'P1'; state.clientId = uuid(); state.milestones = []; state.cheer = null; render(); window.scrollTo(0, 0); sendProgress(); }
     else if (act === 'resume') { state.view = 'q'; if (!state.clientId) state.clientId = uuid(); render(); sendProgress(); }
     else if (act === 'restart') restart();
     else if (act === 'next') goNext();
     else if (act === 'back') goBack();
+    else if (act === 'medal') saveMedal(b);
     else if (act === 'retry') { setSend('sending'); flush(); }
     else if (act === 'big') { state.big = !state.big; render('same'); const t = app.querySelector('[data-act="big"]'); if (t) t.focus({ preventScroll: true }); announce(state.big ? 'Letra grande activada.' : 'Letra normal.'); }
     else if (act === 'share') { navigator.share({ title: 'Correr en Nicaragua', text: inviteText(), url: shareURL() }).catch(() => {}); }
