@@ -425,11 +425,11 @@
   const channelFrom = () => {
     try { const c = (new URLSearchParams(location.search).get('c') || '').toLowerCase().trim(); return /^[a-z0-9_-]{1,40}$/.test(c) ? c : null; } catch (e) { return null; }
   };
-  const state = { view: 'welcome', current: 'P1', answers: {}, history: [], big: false, hint: '', final: null, send: 'idle', shareFallback: false, channel: channelFrom() };
+  const state = { view: 'welcome', current: 'P1', answers: {}, history: [], big: false, hint: '', final: null, send: 'idle', shareFallback: false, channel: channelFrom(), clientId: null };
   function save() {
     try {
       if (state.view === 'done' || state.view === 'doneKids') { localStorage.removeItem(STORE); return; }
-      localStorage.setItem(STORE, JSON.stringify({ ts: Date.now(), current: state.current, answers: state.answers, history: state.history, big: state.big, channel: state.channel }));
+      localStorage.setItem(STORE, JSON.stringify({ ts: Date.now(), current: state.current, answers: state.answers, history: state.history, big: state.big, channel: state.channel, clientId: state.clientId }));
     } catch (e) {}
   }
   function load() {
@@ -437,7 +437,7 @@
       const s = JSON.parse(localStorage.getItem(STORE) || 'null');
       if (!s) return;
       if (!s.ts || Date.now() - s.ts > DRAFT_TTL) { localStorage.removeItem(STORE); return; }
-      if (s.answers && Q[s.current]) Object.assign(state, { current: s.current, answers: s.answers, history: s.history || [], big: !!s.big, channel: state.channel || s.channel || null });
+      if (s.answers && Q[s.current]) Object.assign(state, { current: s.current, answers: s.answers, history: s.history || [], big: !!s.big, channel: state.channel || s.channel || null, clientId: s.clientId || null });
     } catch (e) {}
   }
   const hasDraft = () => state.history.length > 0 || Object.keys(state.answers).length > 0;
@@ -511,6 +511,36 @@
     writeQueue(readQueue().filter((i) => !done.has(i.client_id)));
     flushing = false;
     if (mineOutcome) setSend(mineOutcome === 'ok' ? 'ok' : mineOutcome === 'drop' ? 'error' : 'offline');
+  }
+  // ───────── Avance: se guarda hasta dónde llegó cada persona, aunque no termine ─────────
+  function progressBody(lastQuestion, completed) {
+    const { path } = walk();
+    const i = path.indexOf(state.current);
+    const upto = i >= 0 ? path.slice(0, i + 1) : path;
+    const answers = {};
+    upto.forEach((id) => {
+      const q = Q[id], a = state.answers[id];
+      if (q.type === 'info' || a == null) return;
+      if (q.type === 'text') { const t = String(a).trim(); if (t) answers[id] = t.slice(0, 600); }
+      else if (isAnswered(q, a)) answers[id] = a;
+    });
+    return {
+      p_client_id: state.clientId, p_version: VERSION, p_path: state.answers.P2 === 'menos13' ? 'ninez' : 'general',
+      p_channel: state.channel, p_last_question: lastQuestion || state.current, p_answers: answers, p_completed: !!completed, p_seq: nextSeq()
+    };
+  }
+  // número creciente por envío: la base ignora un envío atrasado que llegue después de uno más nuevo
+  let lastSeq = 0;
+  const nextSeq = () => { lastSeq = Math.max(Date.now(), lastSeq + 1); return lastSeq; };
+  function sendProgress(lastQuestion, completed, keepalive) {
+    if (!state.clientId) return;
+    try {
+      fetch(SUPABASE_URL + '/rest/v1/rpc/save_survey_progress', {
+        method: 'POST', keepalive: !!keepalive,
+        headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify(progressBody(lastQuestion, completed))
+      }).catch(() => {});
+    } catch (e) {}
   }
   function submit() {
     const item = state.final;
@@ -750,6 +780,7 @@
       '<div class="wrap stack">' +
         '<ul class="facts"><li>3 a 8 minutos</li><li>Anónima</li></ul>' +
         '<p class="kidnote">¿Tienes menos de 13 años? Contéstala junto a tu mamá, tu papá o la persona adulta que te cuida.</p>' +
+        '<p class="kidnote">Tus respuestas se guardan a medida que avanzas, sin nada que te identifique.</p>' +
         '<div class="actions">' +
           (resume
             ? '<button type="button" class="go" data-act="resume">Seguir donde quedaste</button><button type="button" class="quiet" data-act="restart">Empezar de nuevo</button>'
@@ -818,7 +849,7 @@
     const { path, end } = walk();
     const out = {};
     path.forEach((id) => { const q = Q[id]; if (q.type !== 'info' && isAnswered(q, state.answers[id])) out[id] = q.type === 'text' ? String(state.answers[id]).trim().slice(0, 600) : state.answers[id]; });
-    return { version: VERSION, path: end === 'END_KIDS' ? 'ninez' : 'general', channel: state.channel, answers: out, client_id: uuid() };
+    return { version: VERSION, path: end === 'END_KIDS' ? 'ninez' : 'general', channel: state.channel, answers: out, client_id: state.clientId || uuid() };
   }
   const shareURL = () => PUBLIC_URL + '?c=compartido';
   const inviteText = () => 'Te paso esta encuesta sobre cómo se vive el correr en Nicaragua. Es anónima, toma unos minutos y tu historia cuenta aunque no corras: ' + shareURL();
@@ -893,6 +924,7 @@
     pushHistory(state.current);
     if (nx === 'END' || nx === 'END_KIDS') {
       state.final = finalAnswers();
+      sendProgress(nx, true);
       writeQueue(readQueue().filter((i) => i.client_id !== state.final.client_id).concat([state.final]));
       state.send = 'sending';
       state.view = nx === 'END' ? 'done' : 'doneKids';
@@ -901,6 +933,7 @@
       return;
     }
     state.current = nx; render(); window.scrollTo(0, 0);
+    sendProgress();
   }
   function goBack() {
     state.hint = '';
@@ -910,8 +943,8 @@
   }
   function restart() {
     try { localStorage.removeItem(STORE); } catch (e) {}
-    Object.assign(state, { answers: {}, history: [], current: 'P1', hint: '', final: null, send: 'idle', shareFallback: false, view: 'q' });
-    lastProgress = 0; render(); window.scrollTo(0, 0);
+    Object.assign(state, { answers: {}, history: [], current: 'P1', hint: '', final: null, send: 'idle', shareFallback: false, view: 'q', clientId: uuid() });
+    lastProgress = 0; render(); window.scrollTo(0, 0); sendProgress();
   }
   function pick(v) {
     const id = state.current, q = Q[id];
@@ -941,8 +974,8 @@
       const again = app.querySelector('[data-v="' + v + '"]'); if (again) again.focus({ preventScroll: true });
       return;
     }
-    if (act === 'start') { state.view = 'q'; state.current = 'P1'; render(); window.scrollTo(0, 0); }
-    else if (act === 'resume') { state.view = 'q'; render(); }
+    if (act === 'start') { state.view = 'q'; state.current = 'P1'; state.clientId = uuid(); render(); window.scrollTo(0, 0); sendProgress(); }
+    else if (act === 'resume') { state.view = 'q'; if (!state.clientId) state.clientId = uuid(); render(); sendProgress(); }
     else if (act === 'restart') restart();
     else if (act === 'next') goNext();
     else if (act === 'back') goBack();
@@ -969,6 +1002,7 @@
     save();
   });
   window.addEventListener('online', () => flush());
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && state.view === 'q') sendProgress(null, false, true); });
 
   load();
   render();
