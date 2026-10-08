@@ -1,9 +1,13 @@
 # Correr en Nicaragua · encuesta
 
-Encuesta anónima sobre cómo se vive el correr (y el caminar) en Nicaragua, para todas las edades.
+Encuesta anónima de Xolo Run sobre cómo se vive el correr (y el caminar) en Nicaragua, para todas las edades.
+
+Qué cambió y por qué: [CHANGELOG.md](CHANGELOG.md). La versión anterior está respaldada en la rama `respaldo/encuesta-2026-10-06` y la etiqueta `respaldo-2026-10-06`.
 
 - Encuesta: https://corrernicaragua.github.io/
 - Cartel con QR para imprimir: https://corrernicaragua.github.io/cartel.html
+- Quiénes somos: https://corrernicaragua.github.io/#quienes
+- Kit para compartir: https://corrernicaragua.github.io/#compartir (personas) y https://corrernicaragua.github.io/#grupos (clubes, páginas y grupos)
 
 ## Cómo funciona
 
@@ -15,3 +19,7 @@ Encuesta anónima sobre cómo se vive el correr (y el caminar) en Nicaragua, par
 ## Canales
 
 Agrega `?c=<canal>` al enlace para saber de dónde llega cada respuesta (por ejemplo `?c=ig`, `?c=wa`, `?c=kits`). `?c=prueba` marca envíos del equipo y muestra lo que se envió.
+
+El kit para compartir genera sus propios canales: `p-historia`, `p-post` y `p-mensaje` (personas) y `g-<tipo>-<nombre>` (comunidades; tipo `cl`, `pg`, `gr`, `or` u `ot`).
+
+En `localhost` la encuesta no envía nada a Supabase. Para probar el envío real: `?enviar=1&c=prueba`.

@@ -3,16 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Correr en Nicaragua</title>
-<meta name="description" content="Cuéntanos cómo corres, caminas o acompañas. Encuesta anónima de 3 a 8 minutos para gente de todas las edades en Nicaragua.">
+<title>Correr en Nicaragua · Encuesta de Xolo Run</title>
+<!-- La vista previa del enlace (WhatsApp, Messenger, Instagram) es lo primero que ve la gente del grupo que la comparte: dice de quién es. -->
+<meta name="description" content="Encuesta anónima de Xolo Run, un proyecto nicaragüense que está creando una app para carreras. Cuéntanos cómo corres, caminas o acompañas: 3 a 8 minutos.">
 <meta name="theme-color" content="#0B0F1A">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://corrernicaragua.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_NI">
-<meta property="og:site_name" content="Correr en Nicaragua">
-<meta property="og:title" content="Cuéntanos cómo corres">
-<meta property="og:description" content="O cómo caminas, o cómo acompañas. Encuesta anónima de 3 a 8 minutos.">
+<meta property="og:site_name" content="Correr en Nicaragua · Xolo Run">
+<meta property="og:title" content="Cuéntanos cómo corres · Encuesta de Xolo Run">
+<meta property="og:description" content="Encuesta anónima de Xolo Run, un proyecto nicaragüense que está creando una app para carreras. 3 a 8 minutos, sirve aunque no corras.">
 <meta property="og:url" content="https://corrernicaragua.github.io/">
 <meta property="og:image" content="https://corrernicaragua.github.io/og.jpg">
 <meta property="og:image:alt" content="Corredores de todas las edades en una pista, con el texto Cuéntanos cómo corres">
@@ -68,6 +69,31 @@
   .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; }
   .wordmark { font: 800 1.2rem/1 var(--display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--mist); }
   .wordmark b { color: var(--gold); font-weight: 800; }
+  /* Autoría siempre visible, también en capturas de pantalla que circulen sin contexto */
+  .brand { display: grid; gap: 3px; min-width: 0; }
+  .byline { font: 600 0.8rem/1.1 var(--body); color: var(--haze); letter-spacing: 0.01em; }
+  .byline b { color: var(--gold-hi); font-weight: 700; }
+  .who { display: grid; gap: 10px; padding: 16px 18px; border-radius: var(--r); background: rgba(27, 36, 51, 0.92); border: 1px solid var(--slate); }
+  .who h2 { font: 700 1.1rem/1.25 var(--body); }
+  .who h2 b { color: var(--gold-hi); }
+  .who p { color: var(--haze); max-width: 46ch; }
+  .who .link { padding: 4px 0; text-align: left; }
+  .local { padding: 10px 14px; border-radius: 12px; border: 1px dashed var(--gold); color: var(--gold-hi); font-weight: 600; font-size: 0.95rem; }
+  .page { display: grid; gap: 28px; padding-block: 18px 44px; }
+  .page section { display: grid; gap: 10px; }
+  .page h1 { font: 800 2.1rem/1 var(--display); text-transform: uppercase; letter-spacing: 0.01em; text-wrap: balance; }
+  .page h2 { font: 700 1.25rem/1.25 var(--body); }
+  .page p, .page li { max-width: 46ch; }
+  .plain { display: grid; gap: 8px; padding-left: 1.2em !important; list-style: disc !important; }
+  .plain li::marker { color: var(--gold); }
+  .qlist { display: grid; gap: 4px; margin-top: 10px; }
+  .qlist h3 { font: 700 1rem/1.3 var(--body); color: var(--gold-hi); margin-top: 12px; }
+  .qlist li { color: var(--haze); font-size: 0.97rem; }
+  .field-row { display: grid; gap: 6px; }
+  .field-row label { font-weight: 700; }
+  .input { width: 100%; min-height: 3.2rem; padding: 10px 14px; border-radius: 12px; border: 1.5px solid var(--edge); background: var(--night); color: var(--mist); font-size: 1.0625rem; }
+  .input:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.3); }
+  .mono { font: 0.95rem/1.4 ui-monospace, Menlo, Consolas, monospace; color: var(--gold-hi); word-break: break-all; }
   .tool {
     min-width: 48px; min-height: 44px; padding: 0 12px; border-radius: 999px;
     border: 1.5px solid var(--edge); background: transparent; color: var(--mist);
@@ -214,6 +240,82 @@
   @keyframes blink { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) { .enter, .send .dot { animation: none !important; } .go, .opt, .tile { transition: none; } }
   @media (min-width: 720px) { .wrap { max-width: 38rem; } }
+
+  /* ───────── Luz: brillo cálido de medalla, sin cambiar la paleta ni la composición ───────── */
+  .field::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: min(78%, 760px); z-index: -2; pointer-events: none;
+    background: radial-gradient(75% 55% at 10% 0%, rgba(201, 166, 107, 0.13), transparent 70%),
+                radial-gradient(55% 45% at 100% 8%, rgba(120, 140, 180, 0.08), transparent 70%);
+  }
+  .headline em { text-shadow: 0 0 36px rgba(201, 166, 107, 0.28); }
+  .band { background: linear-gradient(180deg, #202A3C 0%, var(--night) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04); }
+  .go { display: inline-flex; align-items: center; justify-content: center; gap: 10px; position: relative; overflow: hidden; isolation: isolate; box-shadow: 0 12px 28px -14px rgba(176, 141, 87, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
+  .go::after {
+    content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; transform: translateX(-120%);
+    background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.3) 50%, transparent 65%);
+    animation: sheen 7s ease-in-out 1.4s infinite;
+  }
+  @keyframes sheen { 0%, 72% { transform: translateX(-120%); } 86%, 100% { transform: translateX(120%); } }
+  .next:not([aria-disabled="true"]) { box-shadow: 0 12px 28px -16px rgba(176, 141, 87, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
+  .opt[aria-checked="true"], .tile[aria-checked="true"], .chip[aria-checked="true"] { box-shadow: 0 10px 26px -16px rgba(201, 166, 107, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+  /* Borde con luz: tarjeta de autoría, medalla, compartir y «pronto» */
+  .who, .medal, .spread, .soon {
+    border: 1px solid transparent;
+    background: linear-gradient(rgba(27, 36, 51, 0.94), rgba(27, 36, 51, 0.94)) padding-box,
+                linear-gradient(150deg, rgba(201, 166, 107, 0.5), rgba(86, 100, 126, 0.28) 38%, rgba(86, 100, 126, 0.14)) border-box;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 18px 40px -28px rgba(0, 0, 0, 0.8);
+  }
+  .medal { background: radial-gradient(60% 42% at 50% 28%, rgba(201, 166, 107, 0.18), transparent 72%) padding-box,
+                       linear-gradient(var(--night), var(--night)) padding-box,
+                       linear-gradient(150deg, rgba(201, 166, 107, 0.5), rgba(86, 100, 126, 0.28) 38%, rgba(86, 100, 126, 0.14)) border-box; }
+  /* Destello que cruza solo el disco de la medalla (círculo del SVG: x 13–87 %, y 38–98 %) */
+  .shine { position: relative; }
+  .shine::after {
+    content: ""; position: absolute; left: 13%; right: 13%; top: 38.4%; bottom: 2.4%; border-radius: 50%; pointer-events: none;
+    background: linear-gradient(110deg, transparent 40%, rgba(255, 244, 220, 0.45) 50%, transparent 60%) 100% 0 / 300% 100% no-repeat;
+    animation: glint 1.6s cubic-bezier(0.3, 0.6, 0.2, 1) 0.7s 1 both;
+  }
+  @keyframes glint { to { background-position: 0 0; } }
+
+  /* ───────── Invitación a compartir: visible, sin estorbar ───────── */
+  .nudge {
+    display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 2px; text-align: left;
+    background: none; border: 0; border-top: 1px solid var(--slate); color: var(--haze); font-size: 0.98rem; line-height: 1.35;
+  }
+  .nudge b { color: var(--gold-hi); font-weight: 700; }
+  .nudge svg { flex: none; width: 22px; height: 22px; color: var(--gold); }
+  .nudge .chev { width: 18px; height: 18px; margin-left: auto; color: var(--haze); }
+  @media (hover: hover) { .nudge:hover b { text-decoration: underline; text-underline-offset: 3px; } }
+  .spread { display: grid; gap: 12px; padding: 20px 18px; border-radius: 20px; }
+  .spread .nudge { border-top-color: rgba(86, 100, 126, 0.5); margin-top: 2px; }
+  .eyebrow { font: 800 0.78rem/1 var(--body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-hi); }
+  .opt .lbl small { display: block; margin-top: 3px; font-size: 0.92rem; font-weight: 500; color: var(--haze); }
+  .opt[aria-checked="true"] .lbl small { color: var(--on-gold); opacity: 0.78; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--edge); background: var(--night); color: var(--mist); font-weight: 600; font-size: 0.98rem; }
+  .chip[aria-checked="true"] { background: var(--gold); border-color: var(--gold); color: var(--on-gold); font-weight: 700; }
+  .kit { display: grid; gap: 14px; }
+  .preview { display: grid; place-items: center; padding: 18px; border-radius: 20px; background: radial-gradient(60% 50% at 50% 35%, rgba(201, 166, 107, 0.14), transparent 75%), var(--night); border: 1px solid var(--slate); min-height: 220px; }
+  .preview img { display: block; width: 100%; max-width: 250px; height: auto; border-radius: 14px; box-shadow: 0 22px 50px -24px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.06); }
+  .preview[data-f="post"] img { max-width: 290px; }
+
+  /* ───────── Pronto en las tiendas (discreto, al final) ───────── */
+  .soon { display: grid; gap: 12px; justify-items: center; text-align: center; padding: 24px 14px 22px; border-radius: 20px; }
+  .soon .name { font: 800 1.9rem/1 var(--display); letter-spacing: 0.06em; text-transform: uppercase; }
+  .soon .name b { color: var(--gold); font-weight: 800; text-shadow: 0 0 30px rgba(201, 166, 107, 0.3); }
+  .stores { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 330px; margin-top: 4px; }
+  .store {
+    position: relative; overflow: hidden; display: flex; align-items: center; gap: 8px; min-width: 0; padding: 10px 10px 10px 10px; border-radius: 13px;
+    border: 1px solid transparent; text-align: left;
+    background: linear-gradient(180deg, #121826, #06080D) padding-box,
+                linear-gradient(160deg, rgba(201, 166, 107, 0.65), rgba(86, 100, 126, 0.35) 45%, rgba(86, 100, 126, 0.2)) border-box;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 10px 24px -16px rgba(0, 0, 0, 0.9);
+  }
+  .store::after { content: ""; position: absolute; inset: 0; pointer-events: none; transform: translateX(-130%); background: linear-gradient(110deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%); animation: sheen 9s ease-in-out 2.5s infinite; }
+  .store svg { flex: none; width: 22px; height: 22px; color: var(--gold-hi); }
+  .store small { display: block; font: 700 0.62rem/1 var(--body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--haze); margin-bottom: 4px; }
+  .store span { font: 700 0.95rem/1 var(--body); white-space: nowrap; color: var(--mist); letter-spacing: 0.005em; }
+  @media (prefers-reduced-motion: reduce) { .go::after, .shine::after, .store::after { animation: none; display: none; } }
 </style>
 </head>
 <body>
@@ -229,7 +331,18 @@
   const SUPABASE_URL = 'https://mwiroczcgigmapzkzeba.supabase.co';
   // Clave publicable de Supabase: es pública a propósito. Con ella solo se puede ENVIAR una respuesta (RLS, migración 0010).
   const SUPABASE_KEY = 'sb_publishable_bZ6aEB26mibNyVdc3Q4JkA_N3Jl2dBI';
-  const VERSION = '2026-10-06';
+  // Versión propia: el tablero separa sus respuestas de las de la encuesta original (by_version).
+  const VERSION = '2026-10-08-xolo';
+
+  // Quién hace la encuesta. CONTACT vacío = no se muestra; llenarlo antes de publicar (correo o Instagram oficial).
+  const BRAND = 'Xolo Run';
+  const CONTACT = { label: '', href: '' };
+
+  // Vista local de evaluación: en localhost no se envía nada a la base real (ni avance ni respuestas).
+  // Para probar el envío real desde local: ?enviar=1 (y ?c=prueba para que no cuente en el tablero).
+  const PARAMS = (() => { try { return new URLSearchParams(location.search); } catch (e) { return new URLSearchParams(''); } })();
+  const LOCAL = location.protocol === 'file:' || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  const DRY = LOCAL && !PARAMS.has('enviar');
 
   // ───────── Preguntas (fuente: documento «Encuesta: cómo se vive el correr en Nicaragua») ─────────
   const BLOCK = { '0': 'Sobre ti', A: 'Cómo te mueves', B: 'Por qué', C: 'Lo que te frena', D: 'Con quién', E: 'Tu última carrera', F: 'Cuando acompañas', N: 'Niñas y niños', T: 'Tu teléfono', Z: 'Para cerrar' };
@@ -238,7 +351,7 @@
   const OTRO = o('otro', 'Otro');
 
   const Q = {
-    P1: { b: '0', type: 'single', title: '¿En qué departamento vives?', help: 'No hay respuestas correctas. Si no te acuerdas de algo, elige «No me acuerdo».', next: 'P2', options: [
+    P1: { b: '0', type: 'single', title: '¿En qué departamento vives?', help: 'No hay respuestas correctas ni respuestas que nos convengan: si hoy todo te funciona bien, eso también nos sirve.', next: 'P2', options: [
       o('managua', 'Managua'), o('carazo', 'Carazo'), o('masaya', 'Masaya'), o('granada', 'Granada'),
       o('leon', 'León o Chinandega'), o('rivas', 'Rivas'), o('norte', 'Norte (Estelí, Matagalpa, Jinotega, Nueva Segovia, Madriz)'),
       o('otro', 'Otro departamento'), o('fuera', 'Vivo fuera de Nicaragua')] },
@@ -344,7 +457,7 @@
     E17: { b: 'E', type: 'multi', title: '¿Qué pasó?', help: 'Puedes elegir varias.', next: 'E18', options: [
       o('cupos', 'Se acabaron los cupos'), o('tarde', 'Me enteré tarde'), o('precio', 'El precio'), o('complicado', 'Inscribirme era complicado'),
       o('talla', 'No había mi talla'), o('fecha', 'La fecha no me quedaba'), o('lejos', 'Era lejos'), o('compania', 'No tenía con quién ir'), OTRO] },
-    E18: { b: 'E', type: 'text', title: 'Cuéntanos lo más complicado, molesto o confuso de esa última carrera.', help: 'Desde que te enteraste hasta que cruzaste la meta. Si no hubo nada, escribe «nada».', next: 'T1' },
+    E18: { b: 'E', type: 'text', optional: true, title: 'Cuéntanos lo más complicado, molesto o confuso de esa última carrera.', help: 'Desde que te enteraste hasta que cruzaste la meta. Si no hubo nada, puedes saltarla.', next: 'T1' },
 
     F1: { b: 'F', type: 'multi', title: '¿A quién acompañas a correr o a las carreras?', help: 'Puedes elegir varias.', next: 'F2', options: [
       o('hijos', 'Hija o hijo'), o('pareja', 'Pareja'), o('padres', 'Mamá o papá'), o('familia', 'Otra familia'), o('amistades', 'Amistades'), OTRO] },
@@ -391,11 +504,12 @@
     T2: { b: 'T', type: 'multi', title: 'La última vez que tuviste que mostrar algo en tu teléfono en la calle, ¿pasó algo de esto?', help: 'Una entrada, un código QR o un comprobante. Puedes elegir varias.', next: 'Z1', options: [
       o('senal', 'No cargaba por falta de señal o de datos'), o('bateria', 'La batería estaba baja o se apagó'), o('sol', 'No se veía por el sol'),
       o('bien', 'Funcionó bien', { ex: true }), o('no_toco', 'No me ha tocado', { ex: true })] },
-    Z1: { b: 'Z', type: 'text', title: 'Si le contaras a una amistad lo más frustrante de correr o caminar en Nicaragua, ¿qué le dirías?', help: 'Con tus palabras. Basta una frase.', next: 'Z2' },
+    Z1: { b: 'Z', type: 'text', optional: true, title: 'Si le contaras a una amistad lo más frustrante de correr o caminar en Nicaragua, ¿qué le dirías?', help: 'Con tus palabras. Basta una frase, y si no se te ocurre nada, puedes saltarla.', next: 'Z2' },
     Z2: { b: 'Z', type: 'single', title: '¿Con qué te identificas?', next: 'Z3', options: [o('mujer', 'Mujer'), o('hombre', 'Hombre'), o('nodecir', 'Prefiero no decir'), OTRO] },
+    // Z3 suma Facebook y «una página o grupo que sigo» (sin ser miembro): es el canal de difusión que estamos usando con los administradores.
     Z3: { b: 'Z', type: 'single', title: '¿Cómo te llegó esta encuesta?', next: 'END', options: [
-      o('instagram', 'Instagram'), o('whatsapp', 'Un grupo de WhatsApp'), o('directo', 'Me la pasó alguien directo'),
-      o('grupo', 'Mi grupo o club de corredores'), o('persona', 'Me la hicieron en persona'), OTRO] }
+      o('instagram', 'Instagram'), o('facebook', 'Facebook'), o('whatsapp', 'Un grupo de WhatsApp'), o('directo', 'Me la pasó alguien directo'),
+      o('grupo', 'Mi grupo o club de corredores'), o('pagina', 'Una página o grupo de running que sigo'), o('persona', 'Me la hicieron en persona'), OTRO] }
   };
 
   // ───────── Íconos dibujados (sin emojis) ─────────
@@ -431,8 +545,10 @@
   const LINK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg>';
 
   // ───────── Estado ─────────
-  const STORE = 'correr-nic-encuesta-v2';
-  const QUEUE = 'correr-nic-pendientes-v1';
+  // Publicada usa las mismas claves que la versión anterior: así se envían las respuestas que quedaron pendientes sin señal.
+  // En local usa claves propias para no mezclarse con la copia original servida en el mismo dominio.
+  const STORE = LOCAL ? 'correr-nic-encuesta-xolo-v1' : 'correr-nic-encuesta-v2';
+  const QUEUE = LOCAL ? 'correr-nic-pendientes-xolo-v1' : 'correr-nic-pendientes-v1';
   const DRAFT_TTL = 2 * 60 * 60 * 1000; // un borrador viejo no debe quedar para la siguiente persona en un teléfono compartido
   const channelFrom = () => {
     try { const c = (new URLSearchParams(location.search).get('c') || '').toLowerCase().trim(); return /^[a-z0-9_-]{1,40}$/.test(c) ? c : null; } catch (e) { return null; }
@@ -481,7 +597,7 @@
   function writeQueue(q) { try { localStorage.setItem(QUEUE, JSON.stringify(q)); } catch (e) {} }
   const SEND_TEXT = {
     sending: ['Enviando tus respuestas…', ''],
-    ok: ['Tus respuestas llegaron.', 'Gracias por tomarte el tiempo.'],
+    ok: DRY ? ['Vista local: no se envió nada.', 'En el sitio publicado aquí se confirma que tus respuestas llegaron.'] : ['Tus respuestas llegaron.', 'Gracias por tomarte el tiempo.'],
     offline: ['Sin señal por ahora.', 'Tus respuestas quedaron guardadas en este teléfono y se envían solas cuando vuelva la conexión.'],
     error: ['No pudimos guardar tus respuestas.', 'Intenta de nuevo en un momento.']
   };
@@ -508,6 +624,12 @@
     const done = new Set(); let mineOutcome = null;
     for (const item of q) {
       let outcome = 'keep';
+      if (DRY) {
+        // Vista local: se da por enviada sin tocar la base
+        outcome = 'ok'; done.add(item.client_id);
+        if (state.final && item.client_id === state.final.client_id) { mineOutcome = 'ok'; state.finisherNo = null; }
+        continue;
+      }
       try {
         const res = await fetch(SUPABASE_URL + '/rest/v1/survey_responses', {
           method: 'POST',
@@ -524,6 +646,7 @@
     writeQueue(readQueue().filter((i) => !done.has(i.client_id)));
     flushing = false;
     if (mineOutcome) setSend(mineOutcome === 'ok' ? 'ok' : mineOutcome === 'drop' ? 'error' : 'offline');
+    if (DRY && mineOutcome) updateMedal();
   }
   // ───────── Avance: se guarda hasta dónde llegó cada persona, aunque no termine ─────────
   function progressBody(lastQuestion, completed) {
@@ -546,7 +669,7 @@
   let lastSeq = 0;
   const nextSeq = () => { lastSeq = Math.max(Date.now(), lastSeq + 1); return lastSeq; };
   function sendProgress(lastQuestion, completed, keepalive) {
-    if (!state.clientId) return;
+    if (!state.clientId || DRY) return;
     try {
       fetch(SUPABASE_URL + '/rest/v1/rpc/save_survey_progress', {
         method: 'POST', keepalive: !!keepalive,
@@ -781,7 +904,7 @@
   }
   const CHEERS = {
     quarter: ['Buen ritmo.', 'Ya llevas un cuarto del recorrido.'],
-    half: ['Mitad del recorrido.', 'En la meta te contamos para qué es todo esto.'],
+    half: ['Mitad del recorrido.', 'Lo que nos cuentas decide qué construimos y qué no.'],
     last: ['Último tramo.', 'Ya casi cruzas la meta y te llevas tu medalla.']
   };
   // Se llama al llegar a una pregunta nueva: deja un mensaje si cruzó un hito que aún no había visto
@@ -836,13 +959,14 @@
   function medalText() {
     const n = state.finisherNo;
     if (typeof n === 'number') return 'Eres la persona número ' + n + ' en cruzar la meta.';
+    if (DRY) return 'Vista local de evaluación: no se envió nada, así que no hay número de llegada.';
     if (state.channel === 'prueba') return 'Medalla de prueba: las pruebas del equipo no reciben número.';
     if (n === undefined && state.send === 'sending') return 'Calculando tu número de llegada…';
     return 'Tu número de llegada aparece cuando tus respuestas lleguen.';
   }
   function medalBox() {
     const n = state.finisherNo;
-    return '<div class="medal" id="medal">' + medalSVG(typeof n === 'number' ? '#' + n : '') +
+    return '<div class="medal" id="medal">' + '<div class="shine">' + medalSVG(typeof n === 'number' ? '#' + n : '') + '</div>' +
       '<div class="stack"><h2>Tu medalla de finalista</h2><p id="medal-text">' + medalText() + '</p>' +
       '<button type="button" class="go" data-act="medal">Guardar para historias</button>' +
       '<p class="muted">Se guarda como imagen para subirla a tus historias de Instagram.</p></div></div>';
@@ -886,7 +1010,7 @@
     x.font = '700 46px Figtree'; x.fillStyle = '#D9DCE3';
     x.fillText(kids ? 'Terminamos la encuesta' : 'Terminé la encuesta', cx, cy + r + 76);
     x.font = '600 40px Figtree'; x.fillStyle = '#A6ADBD';
-    x.fillText('Correr en Nicaragua · 2026', cx, cy + r + 128);
+    x.fillText('Una encuesta de ' + BRAND + ' · 2026', cx, cy + r + 128);
     const yCall = cy + r + 214; // con el titular a 210 px queda en ~1430: el recuadro termina antes de la barra de respuesta
     x.font = '600 44px Figtree'; x.fillStyle = '#D9DCE3'; x.fillText('¿Y tú? Cuéntanos cómo corres', cx, yCall);
     const bw = 820, bh = 118, bx = (W - bw) / 2, by = yCall + 28;
@@ -921,7 +1045,7 @@
   const app = document.getElementById('app');
 
   function topbar(withBack) {
-    const mark = '<span class="wordmark">Correr en <b>Nicaragua</b></span>';
+    const mark = '<span class="brand"><span class="wordmark">Correr en <b>Nicaragua</b></span><span class="byline">Una encuesta de <b>' + BRAND + '</b></span></span>';
     return '<div class="topbar wrap">' +
       (withBack ? '<button type="button" class="tool" data-act="back" aria-label="Pregunta anterior">' + BACK + '</button>' + mark : mark) +
       '<button type="button" class="tool" data-act="big" aria-pressed="' + state.big + '" aria-label="Letra grande">Aa</button></div>';
@@ -932,19 +1056,26 @@
     return '<section class="field enter" data-scene="track"><canvas class="scene" aria-hidden="true"></canvas>' +
       '<div class="field-inner">' + topbar(false) +
       '<div class="wrap stack"><h1 class="headline">Cuéntanos cómo <em>corres</em></h1>' +
-      '<p class="lede">O cómo caminas, o cómo acompañas.</p></div>' +
+      '<p class="lede">O cómo caminas, o cómo acompañas.</p>' +
+        // Quién la hace, en la primera pantalla: lo pidieron los administradores de los grupos que la comparten
+        '<div class="who"><h2>Una encuesta de <b>' + BRAND + '</b></h2>' +
+          '<p>Somos un proyecto nicaragüense e independiente. Antes de crear nuestra app queremos escucharte, aunque nunca hayas corrido una carrera.</p>' +
+          '<p>Si te la compartió un grupo o un club, solo nos ayudan a difundirla: no la organizan ni ven tus respuestas.</p>' +
+          '<button type="button" class="link" data-act="about">Quiénes somos y qué hacemos con tus respuestas</button></div></div>' +
       '<div class="track-space" aria-hidden="true"></div>' +
       '<div class="wrap stack">' +
-        '<ul class="facts"><li>3 a 8 minutos</li><li>Anónima</li></ul>' +
-        '<p class="promise">En la meta te contamos para qué es todo esto <b>y te llevas tu medalla de finalista.</b></p>' +
+        (DRY ? '<p class="local">Vista local de evaluación: las respuestas no se envían.</p>' : '') +
+        '<ul class="facts"><li>3 a 8 minutos</li><li>Anónima</li><li>Sin nombre ni teléfono</li></ul>' +
+        '<p class="promise">Al final te llevas <b>tu medalla de finalista.</b></p>' +
         '<p class="kidnote">¿Tienes menos de 13 años? Contéstala junto a tu mamá, tu papá o la persona adulta que te cuida.</p>' +
-        '<p class="kidnote">Tus respuestas se guardan a medida que avanzas, sin nada que te identifique.</p>' +
-        '<div class="actions">' +
-          (resume
-            ? '<button type="button" class="go" data-act="resume">Seguir donde quedaste</button><button type="button" class="quiet" data-act="restart">Empezar de nuevo</button>'
-            : '<button type="button" class="go" data-act="start">Empezar</button>') +
-        '</div>' +
-      '</div></div></section>';
+        nudge('kit-g', '¿Administras un club, una página o un grupo?', 'Obtén material listo para difundirla') + '</div>' +
+      // Fuera de la columna de abajo: con la tarjeta de autoría arriba, el botón sigue a la vista desde la primera pantalla
+      '<div class="wrap actions">' +
+        (resume
+          ? '<button type="button" class="go" data-act="resume">Seguir donde quedaste</button><button type="button" class="quiet" data-act="restart">Empezar de nuevo</button>'
+          : '<button type="button" class="go" data-act="start">Empezar</button>') +
+      '</div>' +
+      '</div></section>';
   }
 
   function viewInfo(id) {
@@ -978,13 +1109,14 @@
   }
 
   function nextLabel(id) {
-    const nx = nextOf(id, state.answers[id]);
-    return nx && String(nx).startsWith('END') ? 'Terminar' : 'Siguiente';
+    const q = Q[id], nx = nextOf(id, state.answers[id]);
+    if (nx && String(nx).startsWith('END')) return 'Terminar';
+    return q.optional && !isAnswered(q, state.answers[id]) ? 'Saltar' : 'Siguiente';
   }
 
   function viewQuestion(id) {
     const q = Q[id], a = state.answers[id];
-    const answered = isAnswered(q, a);
+    const answered = isAnswered(q, a) || !!q.optional;
     const body = q.type === 'text'
       ? '<label class="sr" for="ta">' + esc(q.title) + '</label><textarea class="textarea" id="ta" maxlength="600" placeholder="Escribe aquí…">' + esc(a || '') + '</textarea><span class="count" id="count">' + String((a || '').length) + ' de 600</span>'
       : optionsHTML(q, a);
@@ -1011,7 +1143,15 @@
     return { version: VERSION, path: end === 'END_KIDS' ? 'ninez' : 'general', channel: state.channel, answers: out, client_id: state.clientId || uuid() };
   }
   const shareURL = () => PUBLIC_URL + '?c=compartido';
-  const inviteText = () => 'Te paso esta encuesta sobre cómo se vive el correr en Nicaragua. Es anónima, toma unos minutos y tu historia cuenta aunque no corras: ' + shareURL();
+  const inviteText = () => 'Te paso esta encuesta de ' + BRAND + ' sobre cómo se vive el correr en Nicaragua. Es anónima, toma unos minutos y tu historia cuenta aunque no corras: ' + shareURL();
+
+  const MEGA_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4h3l6 4V6L7 10H4zM16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/></svg>';
+  const CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
+  const SAVE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg>';
+  // Íconos propios, no los logos de las tiendas: sus insignias oficiales solo se usan cuando la app ya está publicada
+  const PHONE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.5 5.5h3M10.6 10.2l3.6 2.1-3.6 2.1z"/></svg>';
+  const PHONE2_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="3.2"/><path d="M10.5 18.5h3M9.6 13.8l2.4-5 2.4 5M10.4 12.2h3.2"/></svg>';
+  const nudge = (act, q, cta) => '<button type="button" class="nudge" data-act="' + act + '">' + MEGA_ICON + '<span>' + q + ' <b>' + cta + '</b></span>' + CHEV + '</button>';
 
   function viewDone(kids) {
     const hero = '<section class="field enter" data-scene="finish"><canvas class="scene" aria-hidden="true"></canvas>' +
@@ -1020,7 +1160,7 @@
       '<p class="lede">' + (kids ? 'Gracias a los dos. Lo que nos contaron ayuda a pensar carreras donde las niñas y los niños también la pasen bien.' : 'Gracias. Tu historia ya cuenta para entender cómo se corre en Nicaragua.') + '</p></div>' +
       '<div class="track-space" aria-hidden="true"></div></div></section>';
     const reveal = kids ? '' : '<div class="stack"><h2>Lo que estamos construyendo</h2>' +
-      '<p>Ahora que terminaste te lo contamos: una app para correr en Nicaragua. Todavía no tiene nombre.</p>' +
+      '<p>Al inicio te dijimos quiénes somos. El detalle de la app lo dejamos para el final, para no influir en tus respuestas. Esto es lo que queremos que haga ' + BRAND + ':</p>' +
       '<ul class="ticks">' +
         '<li>' + CHECK + '<span>Inscripción y pago en un solo lugar, sin WhatsApp de por medio.</span></li>' +
         '<li>' + CHECK + '<span>Tu dorsal en el teléfono, aunque no tengas señal.</span></li>' +
@@ -1029,19 +1169,275 @@
     const again = kids
       ? '<div class="stack"><h3>¿Tú también corres o caminas?</h3><p class="muted">Contesta la encuesta otra vez, ahora sobre ti.</p><button type="button" class="ghost" data-act="restart">Contestar sobre mí</button></div>'
       : '';
-    const canShare = !!navigator.share;
-    const share = '<div class="stack"><h3>Pásala a alguien de tu familia que no corra</h3><p class="muted">Su historia también cuenta, aunque nunca haya corrido una carrera.</p>' +
+    // Compartir: un gesto rápido (WhatsApp) y, para quien quiera más, el kit con imagen y texto
+    const share = '<div class="spread"><p class="eyebrow">Llévala más lejos</p>' +
+      '<h3>Hay historias que todavía no nos llegan</h3>' +
+      '<p class="muted">Sobre todo las de quien corre poco, camina o solo acompaña. Si se la pasas a alguien así, lo que construyamos se va a parecer más a lo que de verdad vive la gente aquí.</p>' +
       '<div class="share-row">' +
         '<a class="go as-link" href="https://wa.me/?text=' + encodeURIComponent(inviteText()) + '" target="_blank" rel="noopener">' + CHAT_ICON + 'Enviar por WhatsApp</a>' +
-        (canShare ? '<button type="button" class="ghost" data-act="share">' + SHARE_ICON + 'Otras formas de compartir</button>' : '') +
+        '<button type="button" class="ghost" data-act="kit">' + SHARE_ICON + 'Crear imagen para mis historias</button>' +
         '<button type="button" class="ghost" data-act="copy">' + LINK_ICON + 'Copiar enlace</button>' +
       '</div>' +
       (state.shareFallback ? '<label class="sr" for="share-text">Invitación para copiar</label><textarea class="share-text" id="share-text" readonly>' + esc(inviteText()) + '</textarea><p class="muted">Mantén presionado el texto para copiarlo.</p>' : '') +
+      nudge('kit-g', '¿Administras un club, una página o un grupo?', 'Obtén material listo para tu comunidad') +
       '</div>';
     const raw = state.channel === 'prueba'
       ? '<details class="raw"><summary>Lo que se envió (solo en modo prueba)</summary><pre>' + esc(JSON.stringify(state.final, null, 2)) + '</pre></details>'
       : '';
-    return hero + '<div class="wrap after">' + medalBox() + sendBox() + reveal + again + share + raw + '</div>';
+    return hero + '<div class="wrap after">' + medalBox() + sendBox() + reveal + again + share + soonBox() + raw + '</div>';
+  }
+
+  // Cierre discreto: la app que viene, para que se entienda de qué se trató todo
+  function soonBox() {
+    return '<section class="soon" aria-label="Próximamente">' +
+      '<p class="eyebrow">Próximamente</p>' +
+      '<p class="name">Xolo <b>Run</b></p>' +
+      '<p class="muted">Las carreras de Nicaragua, en tu teléfono.</p>' +
+      '<div class="stores">' +
+        '<span class="store">' + PHONE_ICON + '<span><small>Pronto en</small>Google Play</span></span>' +
+        '<span class="store">' + PHONE2_ICON + '<span><small>Pronto en</small>App Store</span></span>' +
+      '</div></section>';
+  }
+
+  // ───────── Transparencia: quiénes somos ─────────
+  const contactHTML = () => CONTACT.href
+    ? '<p>¿Dudas? Escríbenos: <a href="' + esc(CONTACT.href) + '" target="_blank" rel="noopener">' + esc(CONTACT.label) + '</a></p>' : '';
+
+  // Todas las preguntas, por bloque, para que cualquiera las revise antes de contestar o compartir
+  function questionList() {
+    const byBlock = {};
+    Object.values(Q).forEach((q) => { if (q.type !== 'info') (byBlock[q.b] = byBlock[q.b] || []).push(q.title); });
+    return '<details><summary class="link">Ver todas las preguntas</summary><div class="qlist">' +
+      '<p class="muted">Nadie las ve todas: cada persona ve solo las que aplican a su caso.</p>' +
+      Object.keys(BLOCK).filter((b) => byBlock[b]).map((b) =>
+        '<h3>' + BLOCK[b] + (b === 'N' ? ' (solo si responde junto a una niña o un niño)' : '') + '</h3><ul class="plain">' +
+        byBlock[b].map((t) => '<li>' + t + '</li>').join('') + '</ul>').join('') +
+      '</div></details>';
+  }
+
+  function pageShell(inner) {
+    return '<section class="q enter"><header class="band">' + topbar(true) + '<div class="wrap" style="height:12px"></div></header>' +
+      '<div class="wrap page">' + inner + '</div></section>';
+  }
+
+  function viewAbout() {
+    return pageShell(
+      '<section><h1 tabindex="-1" id="qt">Quiénes somos</h1>' +
+        '<p>' + BRAND + ' es un proyecto nicaragüense e independiente. Estamos creando una app para la comunidad que corre y camina en el país.</p>' +
+        '<p>Antes de construirla queremos escuchar a quienes la van a usar, para que responda a lo que de verdad pasa en las carreras y en la calle, no a lo que nosotros suponemos.</p>' +
+        '<p class="muted">Esta encuesta no pertenece a ningún club, página ni organizador de carreras.</p>' +
+        contactHTML() + '</section>' +
+      '<section><h2>Para qué sirven tus respuestas</h2>' +
+        '<p>Para entender cómo se entera la gente de las carreras, cómo se inscribe y qué la frena. Lo que aprendamos decide qué construimos y qué no.</p>' +
+        '<p>No te vamos a vender nada. Si hoy todo te funciona bien, también nos sirve saberlo.</p></section>' +
+      '<section><h2>Qué preguntamos y qué no</h2><ul class="plain">' +
+        '<li>No pedimos nombre, cédula, teléfono ni correo.</li>' +
+        '<li>Solo preguntamos tu departamento y tu rango de edad, no dónde vives exactamente.</li>' +
+        '<li>Tus respuestas se guardan a medida que avanzas, aunque no termines, sin nada que te identifique. Así sabemos qué preguntas cansan.</li>' +
+        '<li>Si tienes menos de 13 años, la contestas junto a una persona adulta.</li></ul>' +
+        questionList() + '</section>' +
+      '<section><h2>Quién ve las respuestas</h2>' +
+        '<p>Solo el equipo de ' + BRAND + '. Quienes comparten la encuesta no la organizan ni ven las respuestas. Si publicamos resultados, serán cifras generales, nunca respuestas de una persona.</p></section>' +
+      '<section>' + nudge('kit-g', '¿Administras un club, una página o un grupo?', 'Obtén material listo para difundirla') + '</section>' +
+      '<div class="stack"><button type="button" class="go" data-act="home">Volver a la encuesta</button></div>');
+  }
+
+  // ───────── Kit para compartir: personas, clubes, páginas y grupos ─────────
+  const KINDS = [['cl', 'Club o crew de running'], ['pg', 'Página o cuenta de running'], ['gr', 'Grupo de WhatsApp o Facebook'], ['or', 'Organizador de carreras'], ['ot', 'Entrenador, gimnasio o tienda']];
+  const WHERES = [['historia', 'Historia', 'Instagram, Facebook o estado de WhatsApp'], ['post', 'Publicación', 'Feed de Instagram o Facebook'], ['mensaje', 'Mensaje', 'Un chat o grupo de WhatsApp']];
+  const sh = { mode: null, name: '', kind: 'cl', where: 'historia' };
+  const slug = (t, max) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, max).replace(/-+$/, '');
+  // El canal ya existe en la base: p-historia, g-cl-corredores-de-masaya… (máximo 40)
+  const shChannel = () => sh.mode === 'grupo' ? ('g-' + sh.kind + (slug(sh.name, 34) ? '-' + slug(sh.name, 34) : '')) : 'p-' + sh.where;
+  const shLink = () => PUBLIC_URL + '?c=' + shChannel();
+  const shName = () => String(sh.name || '').trim().slice(0, 60);
+  function shText() {
+    const link = shLink(), n = shName(), done = !!state.final;
+    if (sh.mode === 'grupo') {
+      const who = n || 'nuestra comunidad';
+      if (sh.where === 'historia') return 'Encuesta anónima de ' + BRAND + ' sobre cómo se vive el correr en Nicaragua. No es de ' + who + ': solo ayudamos a difundirla.\n' + link;
+      if (sh.where === 'post') return '¿Cómo se vive el correr en Nicaragua? ' + BRAND + ', un proyecto nicaragüense independiente, está haciendo una encuesta anónima para entenderlo y nos pidió ayuda para difundirla.\n\n' +
+        'La encuesta no es de ' + who + ' y no vemos las respuestas. Toma de 3 a 8 minutos, no pide nombre ni teléfono y sirve aunque no corras carreras: también si caminas o acompañas a alguien.\n\nContéstala aquí: ' + link;
+      return '¡Hola a todos! Les paso una encuesta anónima de ' + BRAND + ' sobre cómo se vive el correr en Nicaragua. No es de ' + who + ': solo ayudamos a difundirla. Son de 3 a 8 minutos y sirve aunque no corran carreras.\n' + link;
+    }
+    if (sh.where === 'historia') return (done ? 'Ya conté cómo corro. ¿Y tú?' : '¿Cómo corres tú?') + ' Encuesta anónima sobre el correr en Nicaragua, de ' + BRAND + '.\n' + link;
+    if (sh.where === 'post') return (done ? 'Acabo de contestar' : 'Les comparto') + ' una encuesta anónima sobre cómo se vive el correr en Nicaragua. La hace ' + BRAND + ', un proyecto nicaragüense. Son de 3 a 8 minutos y sirve aunque no corras carreras: también si caminas o acompañas a alguien.\n' + link;
+    return 'Te paso esta encuesta de ' + BRAND + ' sobre cómo se vive el correr en Nicaragua. Es anónima, toma unos minutos y tu historia cuenta aunque no corras:\n' + link;
+  }
+  const TIPS = {
+    historia: 'Sube la imagen a tu historia y pon el sticker de enlace sobre el recuadro punteado, con tu enlace.',
+    post: 'Publica la imagen con el texto de abajo. El código QR lleva a la encuesta con tu enlace.',
+    mensaje: 'Manda la imagen y el texto juntos: así se ve de qué se trata antes de abrir el enlace.'
+  };
+
+  const radio = (attr, val, cur, title, sub) => '<button type="button" class="opt" role="radio" aria-checked="' + (val === cur) + '" ' + attr + '="' + val + '">' +
+    '<span class="ind"></span><span class="lbl">' + title + (sub ? '<small>' + sub + '</small>' : '') + '</span></button>';
+
+  function viewShare() {
+    const g = sh.mode === 'grupo';
+    const modes = '<div class="opts" role="radiogroup" aria-label="Cómo la vas a compartir">' +
+      radio('data-sm', 'persona', sh.mode, 'Por mi cuenta', 'En tus historias, tu estado o tus chats.') +
+      radio('data-sm', 'grupo', sh.mode, 'Desde un club, una página o un grupo', 'Material para tu comunidad, con un enlace propio.') + '</div>';
+    const who = !g ? '' : '<section><h2>Tu comunidad</h2>' +
+      '<div class="field-row"><label for="sname">Nombre</label><input class="input" id="sname" maxlength="60" autocomplete="off" placeholder="Por ejemplo: Corredores de Masaya" value="' + esc(sh.name) + '"></div>' +
+      '<p class="muted" id="kind-l">¿Qué es?</p><div class="chips" role="radiogroup" aria-labelledby="kind-l">' +
+      KINDS.map((k) => '<button type="button" class="chip" role="radio" aria-checked="' + (k[0] === sh.kind) + '" data-sk="' + k[0] + '">' + k[1] + '</button>').join('') + '</div></section>';
+    const where = !sh.mode ? '' : '<section><h2>¿Dónde lo vas a publicar?</h2><div class="opts" role="radiogroup" aria-label="Dónde lo vas a publicar">' +
+      WHERES.map((w) => radio('data-sw', w[0], sh.where, w[1], w[2])).join('') + '</div></section>';
+    const kit = !sh.mode ? '' : '<section class="kit" aria-live="polite"><h2>Tu material</h2>' +
+      '<div class="preview" id="spreview" data-f="' + (sh.where === 'historia' ? 'story' : 'post') + '"><span class="muted" id="sloading">Preparando la imagen…</span></div>' +
+      '<p class="muted">' + TIPS[sh.where] + '</p>' +
+      '<button type="button" class="go" data-act="ssave">' + SAVE_ICON + 'Guardar imagen</button>' +
+      '<label class="sr" for="stext">Texto para publicar</label><textarea class="share-text" id="stext" readonly style="min-height:' + (sh.where === 'post' ? '13rem' : '7.5rem') + '">' + esc(shText()) + '</textarea>' +
+      '<div class="share-row"><button type="button" class="ghost" data-act="scopy">' + LINK_ICON + 'Copiar texto</button>' +
+      '<a class="ghost" id="swa" href="https://wa.me/?text=' + encodeURIComponent(shText()) + '" target="_blank" rel="noopener">' + CHAT_ICON + 'Enviar por WhatsApp</a></div>' +
+      '<p class="muted">Tu enlace: <span class="mono" id="slink">' + esc(shLink()) + '</span></p>' +
+      '<p class="muted">' + (g ? 'Con este enlace solo sabemos cuántas respuestas llegaron por tu comunidad, nunca quién respondió. Y la encuesta le dice a cada persona, desde el inicio, que es de ' + BRAND + ' y que ustedes no ven las respuestas.' : 'Con este enlace solo sabemos cuántas respuestas llegaron por publicaciones como la tuya, nunca quién respondió.') + '</p>' +
+      '</section>';
+    const review = !g ? '' : '<section><h2>Antes de compartirla</h2><p>Puedes revisar todas las preguntas que va a ver tu comunidad.</p>' + questionList() + '</section>';
+    return pageShell(
+      '<section><p class="eyebrow">Difunde la encuesta</p><h1 tabindex="-1" id="qt">Llévala más lejos</h1>' +
+        '<p>Cada respuesta nueva hace que lo que construimos se parezca más a lo que vive quien corre, camina o acompaña en Nicaragua. Te armamos el material en un momento.</p></section>' +
+      '<section><h2>¿Cómo la vas a compartir?</h2>' + modes + '</section>' + who + where + kit + review +
+      '<div class="stack"><button type="button" class="' + (sh.mode ? 'ghost' : 'go') + '" data-act="home">Volver a la encuesta</button></div>');
+  }
+
+  // Actualiza texto, enlace e imagen sin volver a dibujar la página (el campo de nombre no pierde el foco)
+  let shTimer = 0, shCanvas = null, shJob = 0;
+  function refreshShare(immediate) {
+    const t = document.getElementById('stext'); if (!t) return;
+    t.value = shText();
+    const l = document.getElementById('slink'); if (l) l.textContent = shLink();
+    const w = document.getElementById('swa'); if (w) w.href = 'https://wa.me/?text=' + encodeURIComponent(shText());
+    clearTimeout(shTimer);
+    shTimer = setTimeout(async () => {
+      const job = ++shJob;
+      const cv = await makeShareCanvas(sh.where === 'historia' ? 'story' : 'post');
+      if (job !== shJob) return;
+      shCanvas = cv;
+      const box = document.getElementById('spreview'); if (!box) return;
+      box.innerHTML = '<img alt="Vista previa de la imagen para ' + (sh.where === 'historia' ? 'historias' : 'publicar') + '" src="' + cv.toDataURL('image/png') + '">';
+    }, immediate ? 0 : 280);
+  }
+
+  // Código QR con la misma librería que usa el cartel; si no carga, la imagen lleva solo la dirección
+  let qrLib = null;
+  function loadQR() {
+    if (window.qrcode) return Promise.resolve(window.qrcode);
+    if (!qrLib) qrLib = new Promise((ok) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js';
+      s.onload = () => ok(window.qrcode || null); s.onerror = () => ok(null);
+      document.head.appendChild(s);
+    });
+    return qrLib;
+  }
+
+  const fitFont = (x, text, weight, family, max, width) => {
+    let size = max; x.font = weight + ' ' + size + 'px ' + family;
+    const w = x.measureText(text).width; if (w > width) size = Math.floor(size * width / w);
+    x.font = weight + ' ' + size + 'px ' + family; return size;
+  };
+
+  // Imagen para compartir: misma tipografía, pista y medalla de la encuesta, con la autoría siempre visible
+  async function makeShareCanvas(format) {
+    for (const f of ['900 200px "Big Shoulders Display"', '800 46px "Big Shoulders Display"', '600 44px Figtree', '700 44px Figtree']) { try { await document.fonts.load(f); } catch (e) {} }
+    const story = format === 'story', W = 1080, H = story ? 1920 : 1350, L = 80;
+    const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    const x = cv.getContext('2d'), DISPLAY = '"Big Shoulders Display", "Arial Narrow", sans-serif', BODY = 'Figtree, sans-serif';
+    const g = sh.mode === 'grupo', n = shName();
+    x.fillStyle = '#0B0F1A'; x.fillRect(0, 0, W, H);
+    // luz cálida arriba a la izquierda y fría a la derecha, como la pantalla de inicio
+    let rg = x.createRadialGradient(W * 0.1, 0, 0, W * 0.1, 0, W * 1.1);
+    rg.addColorStop(0, 'rgba(201,166,107,0.20)'); rg.addColorStop(1, 'rgba(201,166,107,0)'); x.fillStyle = rg; x.fillRect(0, 0, W, H);
+    rg = x.createRadialGradient(W, H * 0.06, 0, W, H * 0.06, W * 0.8);
+    rg.addColorStop(0, 'rgba(120,140,180,0.12)'); rg.addColorStop(1, 'rgba(120,140,180,0)'); x.fillStyle = rg; x.fillRect(0, 0, W, H);
+    x.textBaseline = 'alphabetic';
+    // marca y autoría
+    const top = story ? 210 : 130;
+    x.letterSpacing = '5px'; x.font = '800 46px ' + DISPLAY;
+    x.fillStyle = '#D9DCE3'; x.fillText('CORRER EN', L, top); const w0 = x.measureText('CORRER EN ').width;
+    x.fillStyle = '#B08D57'; x.fillText('NICARAGUA', L + w0, top);
+    x.letterSpacing = '0px'; x.font = '600 36px ' + BODY; x.fillStyle = '#A6ADBD'; x.fillText('Una encuesta de ', L, top + 54);
+    const w1 = x.measureText('Una encuesta de ').width; x.font = '700 36px ' + BODY; x.fillStyle = '#C9A66B'; x.fillText(BRAND, L + w1, top + 54);
+    // titular
+    x.letterSpacing = '2px';
+    const size = Math.min(fitFont(x, 'CUÉNTANOS', '900', DISPLAY, story ? 250 : 170, W - 2 * L), story ? 250 : 170);
+    const lh = Math.round(size * 0.97); let y = top + 70 + lh;
+    x.font = '900 ' + size + 'px ' + DISPLAY; x.fillStyle = '#D9DCE3';
+    x.fillText('CUÉNTANOS', L - 4, y); y += lh; x.fillText('CÓMO', L - 4, y); y += lh;
+    x.save(); x.shadowColor = 'rgba(201,166,107,0.45)'; x.shadowBlur = 40; x.fillStyle = '#B08D57'; x.fillText('CORRES', L - 4, y); x.restore();
+    x.letterSpacing = '0px'; x.font = '500 ' + (story ? 46 : 40) + 'px ' + BODY; x.fillStyle = '#A6ADBD';
+    y += story ? 80 : 74; x.fillText('O cómo caminas, o cómo acompañas.', L, y);
+    // pista con corredores
+    const lanes = story ? 5 : 3, gap = story ? 56 : 50, y0 = y + (story ? 70 : 40);
+    const kinds = [['run', 'senior', 'run'], ['kid', 'run', 'kid'], ['run', 'kid', 'senior'], ['senior', 'run', 'kid'], ['you', 'run', 'run']].slice(5 - lanes);
+    for (let i = 0; i < lanes; i++) {
+      const by = y0 + gap * (i + 1);
+      x.strokeStyle = tintOf(0.1 + i * 0.04); x.lineWidth = 2; x.beginPath(); x.moveTo(0, by); x.lineTo(W, by); x.stroke();
+      kinds[i].forEach((k, j) => {
+        const K = KIND[k], h = gap * 1.25 * (0.75 + i * 0.06) * K.scale, you = k === 'you';
+        drawRunner(x, 120 + j * 330 + (i % 2) * 140 + (you ? 120 : 0), by, h, 0.9 + i * 1.7 + j * 2.3, you ? 'run' : k, you ? '#B08D57' : tintOf(0.25 + i * 0.07));
+      });
+    }
+    y = y0 + gap * lanes;
+    // datos
+    const dot = (cx, cy) => { x.fillStyle = '#B08D57'; x.beginPath(); x.arc(cx, cy, 8, 0, Math.PI * 2); x.fill(); };
+    const facts = ['3 a 8 minutos', 'Anónima', 'Sin nombre ni teléfono'];
+    if (story) {
+      y += 100;
+      // los tres datos en una fila: la letra se ajusta al ancho
+      x.font = '700 40px ' + BODY;
+      const total = facts.reduce((a, f) => a + 28 + x.measureText(f).width, 0) + 40 * (facts.length - 1);
+      const fs = Math.min(40, Math.floor(40 * (W - 2 * L) / total)); x.font = '700 ' + fs + 'px ' + BODY;
+      const dg = fs * 1.0; let fx = L;
+      facts.forEach((f) => { dot(fx + 8, y - fs * 0.32); x.fillStyle = '#D9DCE3'; x.fillText(f, fx + 26, y); fx += 26 + x.measureText(f).width + dg; });
+      y += 92;
+      if (g) {
+        x.fillStyle = '#C9A66B'; fitFont(x, 'Compartida por ' + (n || 'nuestra comunidad'), '700', BODY, 42, W - 2 * L); x.fillText('Compartida por ' + (n || 'nuestra comunidad'), L, y);
+        y += 54; x.fillStyle = '#A6ADBD'; fitFont(x, 'La encuesta es de ' + BRAND + ' y no vemos tus respuestas.', '500', BODY, 34, W - 2 * L); x.fillText('La encuesta es de ' + BRAND + ' y no vemos tus respuestas.', L, y);
+      } else { x.fillStyle = '#A6ADBD'; x.font = '600 38px ' + BODY; x.fillText('Sirve aunque no corras carreras.', L, y); }
+      // recuadro para el sticker de enlace
+      const bw = W - 2 * L, bh = 120, bx = L, byy = Math.min(H - 300, y + 50);
+      x.setLineDash([16, 12]); x.lineWidth = 4; x.strokeStyle = '#B08D57'; x.beginPath(); x.roundRect(bx, byy, bw, bh, 60); x.stroke(); x.setLineDash([]);
+      x.textAlign = 'center'; x.font = '700 42px ' + BODY; x.fillStyle = '#C9A66B'; x.fillText('Toca el enlace y cuéntanos', W / 2, byy + bh / 2 + 15); x.textAlign = 'start';
+    } else {
+      const qs = 300, qx = W - L - qs, qy = H - 70 - qs;
+      let fy = qy + 50;
+      x.font = '700 38px ' + BODY;
+      facts.forEach((f) => { dot(L + 8, fy - 12); x.fillStyle = '#D9DCE3'; x.fillText(f, L + 30, fy); fy += 60; });
+      const tw = qx - L - 40;
+      fy += 26;
+      if (g) {
+        x.fillStyle = '#C9A66B'; fitFont(x, 'Compartida por ' + (n || 'nuestra comunidad'), '700', BODY, 32, tw); x.fillText('Compartida por ' + (n || 'nuestra comunidad'), L, fy);
+        fy += 42; x.fillStyle = '#A6ADBD'; fitFont(x, 'No vemos tus respuestas.', '500', BODY, 30, tw); x.fillText('No vemos tus respuestas.', L, fy);
+      } else { x.fillStyle = '#A6ADBD'; fitFont(x, 'corrernicaragua.github.io', '600', BODY, 32, tw); x.fillText('corrernicaragua.github.io', L, fy); }
+      const lib = await loadQR();
+      x.fillStyle = '#FFFFFF'; x.beginPath(); x.roundRect(qx, qy, qs, qs, 22); x.fill();
+      if (lib) {
+        const q = lib(0, 'M'); q.addData(shLink()); q.make();
+        const m = q.getModuleCount(), pad = 22, cell = (qs - pad * 2) / m;
+        x.fillStyle = '#0B0F1A';
+        for (let r = 0; r < m; r++) for (let c = 0; c < m; c++) if (q.isDark(r, c)) x.fillRect(qx + pad + c * cell, qy + pad + r * cell, Math.ceil(cell), Math.ceil(cell));
+      } else { x.fillStyle = '#0B0F1A'; x.textAlign = 'center'; x.font = '700 26px ' + BODY; x.fillText('Escanea', qx + qs / 2, qy + qs / 2); x.textAlign = 'start'; }
+    }
+    return cv;
+  }
+
+  async function saveCanvas(cv, name, text, btn) {
+    const old = btn.lastChild.textContent; btn.lastChild.textContent = 'Preparando…';
+    try {
+      const blob = await new Promise((ok) => cv.toBlob(ok, 'image/png'));
+      const file = new File([blob], name, { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) await navigator.share({ files: [file], text }).catch(() => {});
+      else {
+        const url = URL.createObjectURL(blob), a = document.createElement('a');
+        a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+      }
+      announce('Imagen lista.');
+    } catch (e) { announce('No se pudo preparar la imagen. Intenta de nuevo.'); }
+    btn.lastChild.textContent = old;
   }
 
   function render(dir) {
@@ -1051,6 +1447,8 @@
     if (state.view === 'welcome') html = viewWelcome();
     else if (state.view === 'done') html = viewDone(false);
     else if (state.view === 'doneKids') html = viewDone(true);
+    else if (state.view === 'about') html = viewAbout();
+    else if (state.view === 'share') html = viewShare();
     else html = Q[state.current].type === 'info' ? viewInfo(state.current) : viewQuestion(state.current);
     app.innerHTML = html;
     if (dir === 'same') app.querySelectorAll('.enter').forEach((el) => el.classList.remove('enter'));
@@ -1065,6 +1463,7 @@
     } else if (state.view === 'welcome') lastProgress = 0;
     const title = app.querySelector('#qt');
     if (title && dir !== 'same') title.focus({ preventScroll: true });
+    if (state.view === 'share') refreshShare(true);
     save();
   }
 
@@ -1074,7 +1473,8 @@
   function goNext() {
     if (state.view !== 'q') return;
     const q = Q[state.current], a = state.answers[state.current];
-    if (q.type !== 'info' && !isAnswered(q, a)) {
+    if (q.optional && !isAnswered(q, a)) delete state.answers[state.current]; // saltada: no se guarda nada
+    else if (q.type !== 'info' && !isAnswered(q, a)) {
       say(q.type === 'text' ? 'Escribe al menos una palabra para seguir. Si no hubo nada, escribe «nada».' : 'Elige una opción para seguir. Si no te acuerdas, elige «No me acuerdo».');
       return;
     }
@@ -1094,8 +1494,20 @@
     state.current = nx; checkMilestone(); render(); window.scrollTo(0, 0);
     sendProgress();
   }
+  // Páginas de quiénes somos y para compartir: se abren encima de donde estabas y vuelven ahí
+  const isPage = () => state.view === 'about' || state.view === 'share';
+  function openPage(v) {
+    if (!isPage()) state.prevView = state.view;
+    state.view = v; render(); window.scrollTo(0, 0);
+  }
+  function closePage() {
+    state.view = state.prevView || 'welcome'; state.prevView = null;
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    render(); window.scrollTo(0, 0);
+  }
   function goBack() {
     state.hint = '';
+    if (isPage()) { closePage(); return; }
     if (state.view === 'done' || state.view === 'doneKids') { state.view = 'welcome'; render(); return; }
     if (state.history.length) { state.current = state.history.pop(); render(); window.scrollTo(0, 0); }
     else { state.view = 'welcome'; render(); }
@@ -1126,6 +1538,14 @@
   app.addEventListener('click', (e) => {
     const b = e.target.closest('button'); if (!b) return;
     const act = b.dataset.act;
+    // Opciones del kit para compartir
+    if (b.dataset.sm || b.dataset.sk || b.dataset.sw) {
+      const k = b.dataset.sm ? 'sm' : b.dataset.sk ? 'sk' : 'sw', v = b.dataset[k];
+      if (k === 'sm') sh.mode = v; else if (k === 'sk') sh.kind = v; else sh.where = v;
+      render('same');
+      const again = app.querySelector('[data-' + k + '="' + v + '"]'); if (again) again.focus({ preventScroll: true });
+      return;
+    }
     if (b.dataset.v) {
       const v = b.dataset.v;
       if (b.getAttribute('aria-disabled') === 'true') say('Puedes elegir hasta ' + Q[state.current].max + '. Quita una para cambiarla.');
@@ -1135,13 +1555,23 @@
     }
     if (act === 'start') { state.view = 'q'; state.current = 'P1'; state.clientId = uuid(); state.milestones = []; state.cheer = null; render(); window.scrollTo(0, 0); sendProgress(); }
     else if (act === 'resume') { state.view = 'q'; if (!state.clientId) state.clientId = uuid(); render(); sendProgress(); }
+    else if (act === 'about') openPage('about');
+    else if (act === 'kit') { if (!sh.mode) sh.mode = 'persona'; openPage('share'); }
+    else if (act === 'kit-g') { sh.mode = 'grupo'; openPage('share'); }
+    else if (act === 'home') closePage();
+    else if (act === 'ssave') { if (shCanvas) saveCanvas(shCanvas, 'encuesta-correr-en-nicaragua-' + (sh.where === 'historia' ? 'historia' : 'publicacion') + '.png', shText(), b); }
+    else if (act === 'scopy') {
+      const ta = document.getElementById('stext');
+      const ok = () => { b.lastChild.textContent = 'Texto copiado'; announce('Texto copiado. Pégalo en tu publicación.'); };
+      const fail = () => { if (ta) { ta.focus({ preventScroll: true }); ta.select(); } announce('No se pudo copiar solo. El texto quedó seleccionado para que lo copies.'); };
+      try { navigator.clipboard.writeText(ta ? ta.value : shText()).then(ok, fail); } catch (err) { fail(); }
+    }
     else if (act === 'restart') restart();
     else if (act === 'next') goNext();
     else if (act === 'back') goBack();
     else if (act === 'medal') saveMedal(b);
     else if (act === 'retry') { setSend('sending'); flush(); }
     else if (act === 'big') { state.big = !state.big; render('same'); const t = app.querySelector('[data-act="big"]'); if (t) t.focus({ preventScroll: true }); announce(state.big ? 'Letra grande activada.' : 'Letra normal.'); }
-    else if (act === 'share') { navigator.share({ title: 'Correr en Nicaragua', text: inviteText(), url: shareURL() }).catch(() => {}); }
     else if (act === 'copy') {
       const ok = () => { b.lastChild.textContent = 'Enlace copiado'; announce('Enlace copiado. Pégalo en WhatsApp o donde quieras.'); };
       const fail = () => {
@@ -1154,18 +1584,26 @@
     }
   });
   app.addEventListener('input', (e) => {
+    if (e.target.id === 'sname') { sh.name = e.target.value; refreshShare(); return; }
     if (e.target.id !== 'ta') return;
     const v = e.target.value; if (v.trim()) state.answers[state.current] = v; else delete state.answers[state.current];
     const c = document.getElementById('count'); if (c) c.textContent = v.length + ' de 600';
     const btn = app.querySelector('.dock [data-act="next"]');
-    if (btn) { if (isAnswered(Q[state.current], v)) btn.removeAttribute('aria-disabled'); else btn.setAttribute('aria-disabled', 'true'); }
+    if (btn) {
+      if (isAnswered(Q[state.current], v) || Q[state.current].optional) btn.removeAttribute('aria-disabled'); else btn.setAttribute('aria-disabled', 'true');
+      btn.textContent = nextLabel(state.current);
+    }
     save();
   });
   window.addEventListener('online', () => flush());
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && state.view === 'q') sendProgress(null, false, true); });
 
   load();
-  render();
+  // Enlaces directos: #grupos (administradores), #compartir (cualquier persona), #quienes
+  const ROUTES = { '#grupos': () => { sh.mode = 'grupo'; openPage('share'); }, '#compartir': () => { sh.mode = sh.mode || 'persona'; openPage('share'); }, '#quienes': () => openPage('about') };
+  const routeHash = () => { const r = ROUTES[location.hash]; if (r) r(); };
+  window.addEventListener('hashchange', routeHash);
+  if (ROUTES[location.hash]) routeHash(); else render();
   flush(); // envía respuestas que quedaron pendientes en este teléfono
 })();
 </script>
