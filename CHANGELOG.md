@@ -2,6 +2,8 @@
 
 ## 2026-10-08 · Rediseño de confianza (versión `2026-10-08-xolo`)
 
+**Publicado:** 8 oct 2026, commit `ec521ca`, en https://corrernicaragua.github.io/.
+
 **Por qué:** al pedir a administradores de grupos que la compartieran, algunos preguntaron quién está detrás (Pride Run Club Managua). Otros temían que su comunidad creyera que la encuesta era suya (Granada Runners pidió que lo dijera al inicio). La versión anterior no decía de quién era y guardaba el propósito para el final.
 
 **Respaldo de la versión anterior:** rama `respaldo/encuesta-2026-10-06` y etiqueta `respaldo-2026-10-06` (commit `3bc8e6b`). Para volver atrás: `git checkout respaldo-2026-10-06 -- index.html`.

@@ -2,7 +2,17 @@
 
 Encuesta anónima de Xolo Run sobre cómo se vive el correr (y el caminar) en Nicaragua, para todas las edades.
 
-Qué cambió y por qué: [CHANGELOG.md](CHANGELOG.md). La versión anterior está respaldada en la rama `respaldo/encuesta-2026-10-06` y la etiqueta `respaldo-2026-10-06`.
+## Últimos cambios (8 oct 2026, versión `2026-10-08-xolo`)
+
+Los administradores de grupos preguntaban quién estaba detrás de la encuesta o temían que su gente creyera que era de ellos. Por eso:
+
+- **Autoría visible:** «Una encuesta de Xolo Run» en la vista previa del enlace, en la barra superior, en la primera pantalla y en la imagen de la medalla. La primera pantalla aclara que el grupo que la comparte no la organiza ni ve las respuestas.
+- **Transparencia:** la página `#quienes` explica quiénes somos, para qué sirven las respuestas y qué se pregunta y qué no, con la lista completa de preguntas.
+- **Kit para compartir** (`#compartir` y `#grupos`): imagen para historia o publicación (con QR), texto listo y enlace propio por canal.
+- **Preguntas:** no se agregó ni se quitó ninguna, y los títulos, el orden y las claves no cambian. P1 cambia el texto de ayuda; E18 y Z1 se pueden saltar; Z3 suma `facebook` y `pagina`.
+- **Diseño:** misma paleta y composición, con luz sutil. Al final, «Próximamente» en Google Play y App Store.
+
+El detalle completo y cómo volver atrás están en [CHANGELOG.md](CHANGELOG.md). La versión anterior quedó respaldada en la rama `respaldo/encuesta-2026-10-06` y la etiqueta `respaldo-2026-10-06`.
 
 - Encuesta: https://corrernicaragua.github.io/
 - Cartel con QR para imprimir: https://corrernicaragua.github.io/cartel.html
