@@ -78,3 +78,7 @@ No se agregó ni se quitó ninguna pregunta. Una pregunta opcional saltada no se
 - En `localhost` no se envía nada a Supabase y la pantalla lo avisa. Para probar el envío real en local: `?enviar=1&c=prueba`.
 - `CONTACT` (correo o Instagram) está vacío y no se muestra. Falta llenarlo.
 - Pendiente en el tablero: agregar al catálogo las opciones nuevas de Z3 y los canales `p-` y `g-`.
+
+## 9 de octubre de 2026 (tarde)
+
+La encuesta se mudó a https://xolorun.com/encuesta/ (repo corrernicaragua/xolorun.com, junto con la landing). Este sitio queda solo como redirección que conserva el canal y la campaña; se quitó el dominio opiniones.xolorun.com. La fuente de la encuesta ahora es lista-espera/landing/encuesta/index.html.
