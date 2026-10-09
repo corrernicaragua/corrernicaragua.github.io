@@ -1,5 +1,9 @@
 # Cambios de la encuesta «Correr en Nicaragua»
 
+## 2026-10-08 · Ajuste: tarjeta de autoría más corta
+
+A pedido de Saymond, la tarjeta de la primera pantalla queda solo con «Una encuesta de Xolo Run» y el enlace «Quiénes somos y qué hacemos con tus respuestas». Se quitaron los dos párrafos porque ese enlace ya abre el detalle, incluido que quien comparte la encuesta no la organiza ni ve las respuestas. La autoría sigue visible en la tarjeta y en la barra superior.
+
 ## 2026-10-08 · Rediseño de confianza (versión `2026-10-08-xolo`)
 
 **Publicado:** 8 oct 2026, commit `ec521ca`, en https://corrernicaragua.github.io/.
