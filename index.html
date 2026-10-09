@@ -6,8 +6,10 @@
 <title>Correr en Nicaragua · Encuesta de Xolo Run</title>
 <!-- La vista previa del enlace (WhatsApp, Messenger, Instagram) es lo primero que ve la gente del grupo que la comparte: dice de quién es. -->
 <meta name="description" content="Encuesta anónima de Xolo Run, un proyecto nicaragüense que está creando una app para carreras. Cuéntanos cómo corres, caminas o acompañas: 3 a 8 minutos.">
-<meta name="theme-color" content="#0B0F1A">
+<meta name="theme-color" content="#F3EFE7">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon-180.png">
 <link rel="canonical" href="https://corrernicaragua.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_NI">
@@ -16,47 +18,53 @@
 <meta property="og:description" content="Encuesta anónima de Xolo Run, un proyecto nicaragüense que está creando una app para carreras. 3 a 8 minutos, sirve aunque no corras.">
 <meta property="og:url" content="https://corrernicaragua.github.io/">
 <meta property="og:image" content="https://corrernicaragua.github.io/og.jpg">
-<meta property="og:image:alt" content="Corredores de todas las edades en una pista, con el texto Cuéntanos cómo corres">
+<meta property="og:image:alt" content="Logo de Xolo Run y el texto Cuéntanos cómo corres, con una línea de ruta que cruza la imagen">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
-  /* Layout: una columna de teléfono sobre azul noche. Pista de corredores en la salida, los relevos y la meta. */
+  /* Xolo Run · Ruta Común (manual de marca v1.0): fondo arena, texto lago profundo, arcilla solo para la acción principal.
+     Una columna de teléfono. La pista de corredores vive en la salida, los relevos y la meta; tu corredor es el único tramo en arcilla. */
   :root {
-    --ink: #0B0F1A;        /* fondo */
-    --night: #1B2433;      /* superficies: opciones, banda de progreso */
-    --slate: #2E3A4F;      /* rellenos tranquilos, carriles */
-    --edge: #56647E;       /* borde de controles: 3.2:1 sobre el fondo */
-    --mist: #D9DCE3;       /* texto principal: 13.8:1 */
-    --haze: #A6ADBD;       /* texto secundario: 8:1 */
-    --gold: #B08D57;       /* acento de medalla: elección, botón, tu corredor, meta */
-    --gold-hi: #C9A66B;    /* dorado para texto pequeño sobre pizarra */
-    --on-gold: #0B0F1A;    /* texto sobre dorado: 6.1:1 */
-    --ok: #9FD3B0;
-    --bad: #FF9A8F;
-    --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
-    --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --r: 16px;
-    color-scheme: dark;
+    --arena: #F3EFE7;      /* fondo */
+    --blanco: #FFFFFF;     /* superficies: opciones, tarjetas, franja de progreso */
+    --lago: #12383B;       /* texto principal: 11:1 sobre arena */
+    --lago-400: #4D6A6C;   /* texto secundario y borde de controles: 5:1 sobre arena */
+    --lago-300: #889C9D;
+    --lago-100: #DBE1E2;
+    --niebla: #B7C2BE;     /* solo bordes y divisores decorativos */
+    --niebla-300: #DBE0DE;
+    --niebla-200: #E9EDEC;
+    --jade: #1F6366;       /* acento secundario: 6:1 sobre arena */
+    --jade-100: #DDE8E8;
+    --jade-200: #BCD0D1;
+    --arcilla: #C65A3D;    /* acción principal (texto blanco en negrita de 19 px) y tu corredor */
+    --arcilla-600: #9E4831;/* arcilla para texto pequeño: 5.7:1 */
+    --display: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --voz: "Newsreader", Georgia, serif;
+    --ease: cubic-bezier(.33, 1, .68, 1);
+    --r: 14px;
+    color-scheme: light;
   }
   *, *::before, *::after { box-sizing: border-box; }
-  html { height: 100%; font-size: 100%; background: var(--ink); accent-color: var(--gold); scrollbar-color: var(--slate) var(--ink); }
+  html { height: 100%; font-size: 100%; background: var(--arena); accent-color: var(--lago); scrollbar-color: var(--niebla) var(--arena); }
   html.big { font-size: 125%; }
   body {
     margin: 0; min-height: 100%; display: flex; flex-direction: column;
     padding-top: env(safe-area-inset-top, 0px);
-    background: var(--ink); color: var(--mist); caret-color: var(--gold);
+    background: var(--arena); color: var(--lago); caret-color: var(--lago);
     font: 400 1.0625rem/1.5 var(--body); -webkit-font-smoothing: antialiased;
   }
-  ::selection { background: var(--gold); color: var(--on-gold); }
+  ::selection { background: var(--lago); color: var(--arena); }
   button, input, textarea { font: inherit; color: inherit; }
   button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
-  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--lago); outline-offset: 3px; }
   h1[tabindex="-1"]:focus { outline: none; }
   h1, h2, h3, p, ul, ol { margin: 0; }
   ul { padding: 0; list-style: none; }
-  a { color: var(--gold-hi); text-underline-offset: 3px; }
+  a { color: var(--jade); text-underline-offset: 3px; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   #app { flex: 1; display: flex; flex-direction: column; }
   .wrap { width: 100%; max-width: 34rem; margin-inline: auto; padding-inline: 20px; }
@@ -67,255 +75,208 @@
   .scene { position: absolute; left: 0; top: 0; width: 100%; height: 0; z-index: -1; display: block; pointer-events: none; }
   .field-inner { flex: 1; display: flex; flex-direction: column; gap: 18px; padding-block: 14px 22px; }
   .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; }
-  .wordmark { font: 800 1.2rem/1 var(--display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--mist); }
-  .wordmark b { color: var(--gold); font-weight: 800; }
+  .wordmark { font: 600 .8125rem/1.1 var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--lago); }
+  .wordmark b { color: var(--jade); font-weight: 600; }
   /* Autoría siempre visible, también en capturas de pantalla que circulen sin contexto */
-  .brand { display: grid; gap: 3px; min-width: 0; }
-  .byline { font: 600 0.8rem/1.1 var(--body); color: var(--haze); letter-spacing: 0.01em; }
-  .byline b { color: var(--gold-hi); font-weight: 700; }
-  .who { display: grid; gap: 10px; padding: 16px 18px; border-radius: var(--r); background: rgba(27, 36, 51, 0.92); border: 1px solid var(--slate); }
-  .who h2 { font: 700 1.1rem/1.25 var(--body); }
-  .who h2 b { color: var(--gold-hi); }
-  .who p { color: var(--haze); max-width: 46ch; }
+  .brand { display: grid; gap: 4px; min-width: 0; }
+  .byline { font: 500 .8125rem/1.1 var(--body); color: var(--lago-400); }
+  .byline b { color: var(--lago); font-weight: 600; }
+  .who { display: grid; gap: 8px; padding: 16px 18px; border-radius: var(--r); background: var(--blanco); border: 1px solid var(--niebla-300); }
+  .who h2 { font: 600 1.1rem/1.25 var(--display); }
+  .who h2 b { color: var(--jade); font-weight: 600; }
+  .who p { color: var(--lago-400); max-width: 46ch; }
   .who .link { padding: 4px 0; text-align: left; }
-  .local { padding: 10px 14px; border-radius: 12px; border: 1px dashed var(--gold); color: var(--gold-hi); font-weight: 600; font-size: 0.95rem; }
+  .local { padding: 10px 14px; border-radius: 12px; border: 1.5px dashed var(--arcilla-600); color: var(--arcilla-600); font-weight: 600; font-size: .95rem; }
   .page { display: grid; gap: 28px; padding-block: 18px 44px; }
   .page section { display: grid; gap: 10px; }
-  .page h1 { font: 800 2.1rem/1 var(--display); text-transform: uppercase; letter-spacing: 0.01em; text-wrap: balance; }
-  .page h2 { font: 700 1.25rem/1.25 var(--body); }
+  .page h1 { font: 700 2.1rem/1.05 var(--display); letter-spacing: -.02em; text-wrap: balance; }
+  .page h2 { font: 600 1.25rem/1.25 var(--display); }
   .page p, .page li { max-width: 46ch; }
   .plain { display: grid; gap: 8px; padding-left: 1.2em !important; list-style: disc !important; }
-  .plain li::marker { color: var(--gold); }
+  .plain li::marker { color: var(--jade); }
   .qlist { display: grid; gap: 4px; margin-top: 10px; }
-  .qlist h3 { font: 700 1rem/1.3 var(--body); color: var(--gold-hi); margin-top: 12px; }
-  .qlist li { color: var(--haze); font-size: 0.97rem; }
+  .qlist h3 { font: 600 1rem/1.3 var(--display); color: var(--jade); margin-top: 12px; }
+  .qlist li { color: var(--lago-400); font-size: .97rem; }
   .field-row { display: grid; gap: 6px; }
-  .field-row label { font-weight: 700; }
-  .input { width: 100%; min-height: 3.2rem; padding: 10px 14px; border-radius: 12px; border: 1.5px solid var(--edge); background: var(--night); color: var(--mist); font-size: 1.0625rem; }
-  .input:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.3); }
-  .mono { font: 0.95rem/1.4 ui-monospace, Menlo, Consolas, monospace; color: var(--gold-hi); word-break: break-all; }
+  .field-row label { font-weight: 600; }
+  .input { width: 100%; min-height: 3.2rem; padding: 10px 14px; border-radius: 12px; border: 1.5px solid var(--lago-400); background: var(--blanco); color: var(--lago); font-size: 1.0625rem; }
+  .input:focus { border-color: var(--lago); outline: none; box-shadow: 0 0 0 3px var(--lago-100); }
+  .mono { font: .95rem/1.4 ui-monospace, Menlo, Consolas, monospace; color: var(--jade); word-break: break-all; }
   .tool {
-    min-width: 48px; min-height: 44px; padding: 0 12px; border-radius: 999px;
-    border: 1.5px solid var(--edge); background: transparent; color: var(--mist);
-    font: 700 1rem/1 var(--body); display: inline-grid; place-items: center;
+    min-width: 48px; min-height: 44px; padding: 0 12px; border-radius: 12px;
+    border: 1.5px solid var(--lago-400); background: transparent; color: var(--lago);
+    font: 600 1rem/1 var(--display); display: inline-grid; place-items: center; transition: background .25s var(--ease), color .25s var(--ease);
   }
-  .tool[aria-pressed="true"] { background: var(--mist); color: var(--ink); border-color: var(--mist); }
+  .tool[aria-pressed="true"] { background: var(--lago); color: var(--arena); border-color: var(--lago); }
   .tool svg { width: 22px; height: 22px; }
-  .headline {
-    font: 900 min(19vw, 118px)/1 var(--display); /* 1: las tildes de esta letra son altas y se esconden con menos */ text-transform: uppercase;
-    letter-spacing: 0.005em; text-wrap: balance; margin-top: 8px;
-  }
-  .headline em { font-style: normal; color: var(--gold); }
-  .headline.small { font-size: min(13.5vw, 84px); line-height: 1; }
-  .lede { font-size: 1.15rem; line-height: 1.45; color: var(--haze); max-width: 34ch; }
+  .headline { font: 700 min(13.4vw, 80px)/1.02 var(--display); letter-spacing: -.035em; text-wrap: balance; margin-top: 8px; }
+  .headline em { font: italic 400 1.04em/1 var(--voz); letter-spacing: -.01em; color: var(--jade); }
+  .headline.small { font-size: min(11vw, 60px); line-height: 1.04; }
+  .lede { font-size: 1.15rem; line-height: 1.45; color: var(--lago-400); max-width: 34ch; }
   .track-space { flex: 1 0 clamp(120px, 24svh, 330px); }
-  .facts { display: flex; flex-wrap: wrap; gap: 6px 20px; font-weight: 700; }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px 20px; font-weight: 600; }
   .facts li { display: flex; align-items: center; gap: 8px; }
-  .facts li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
-  .kidnote { color: var(--haze); max-width: 40ch; }
+  .facts li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--jade); }
+  .kidnote { color: var(--lago-400); max-width: 40ch; }
   .go {
     width: 100%; min-height: 3.6rem; border: 0; border-radius: var(--r);
-    background: var(--gold); color: var(--on-gold);
-    font: 800 1.15rem/1 var(--body); letter-spacing: 0.01em;
-    box-shadow: 0 12px 28px -14px rgba(176, 141, 87, 0.65);
-    transition: transform 0.15s ease-out, background-color 0.15s ease-out;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--arcilla); color: var(--blanco);
+    font: 700 1.1875rem/1 var(--body);
+    transition: transform .25s var(--ease), background-color .25s var(--ease);
   }
-  .go:active { transform: translateY(1px) scale(0.99); }
-  @media (hover: hover) { .go:hover { background: var(--gold-hi); } }
-  .quiet { background: none; border: 0; color: var(--mist); font-weight: 600; padding: 12px 4px; text-decoration: underline; text-underline-offset: 4px; }
+  .go:active { transform: translateY(1px) scale(.99); }
+  @media (hover: hover) { .go:hover { background: var(--arcilla-600); } }
+  .quiet { background: none; border: 0; color: var(--lago); font-weight: 600; padding: 12px 4px; text-decoration: underline; text-decoration-color: var(--lago-300); text-underline-offset: 4px; }
   .actions { display: grid; gap: 4px; position: sticky; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 1; }
 
   /* ───────── Pantalla de pregunta ───────── */
   .q { flex: 1; display: flex; flex-direction: column; }
-  .band { background: var(--night); border-bottom: 1px solid var(--slate); }
+  .band { background: var(--blanco); border-bottom: 1px solid var(--niebla-300); }
   .band .topbar { padding-top: 8px; }
-  .band .tool { border-color: #6B7894; } /* 3.6:1 sobre la franja: el borde de --edge no llega a 3:1 ahí */
   .band-track { position: relative; height: 46px; }
   .band-track canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-  .band-cap { display: flex; justify-content: space-between; gap: 12px; padding-block: 2px 12px; font-size: 1rem; color: var(--haze); }
-  .band-cap b { color: var(--mist); font-weight: 700; }
+  .band-cap { display: flex; justify-content: space-between; gap: 12px; padding-block: 2px 12px; font-size: 1rem; color: var(--lago-400); }
+  .band-cap b { color: var(--lago); font: 600 1rem/1.3 var(--display); }
   .qbody { display: grid; gap: 14px; padding-block: 28px 12px; }
-  .q-title { font: 700 clamp(1.5rem, 6.2vw, 2.05rem)/1.18 var(--body); letter-spacing: -0.015em; text-wrap: balance; outline: none; }
-  .q-help { color: var(--haze); max-width: 42ch; }
+  .q-title { font: 600 clamp(1.5rem, 6.2vw, 2rem)/1.2 var(--display); letter-spacing: -.02em; text-wrap: balance; outline: none; }
+  .q-help { color: var(--lago-400); max-width: 42ch; }
   .opts { display: grid; gap: 10px; margin-top: 8px; }
   .opt {
     display: flex; align-items: center; gap: 14px; width: 100%; min-height: 3.75rem; padding: 14px 16px;
     text-align: left; font-size: 1.0625rem; line-height: 1.3; font-weight: 500;
-    background: var(--night); color: var(--mist); border: 1.5px solid var(--edge); border-radius: var(--r);
-    transition: background-color 0.18s ease-out, border-color 0.18s ease-out, color 0.18s ease-out;
+    background: var(--blanco); color: var(--lago); border: 1.5px solid var(--lago-300); border-radius: var(--r);
+    transition: background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
   }
   .opt .lbl { min-width: 0; flex: 1; }
-  .opt .ind { flex: none; width: 24px; height: 24px; border: 2px solid var(--haze); display: grid; place-items: center; transition: inherit; }
+  .opt .ind { flex: none; width: 24px; height: 24px; border: 2px solid var(--lago-400); display: grid; place-items: center; transition: inherit; }
   .opt[role="radio"] .ind { border-radius: 50%; }
   .opt[role="checkbox"] .ind { border-radius: 7px; }
-  .opt .ind svg { width: 16px; height: 16px; opacity: 0; color: var(--gold); }
-  .opt[aria-checked="true"] { background: var(--gold); border-color: var(--gold); color: var(--on-gold); font-weight: 700; }
-  .opt[aria-checked="true"] .ind { border-color: var(--on-gold); background: var(--on-gold); }
-  .opt[role="radio"][aria-checked="true"] .ind { box-shadow: inset 0 0 0 5px var(--on-gold); background: var(--gold); }
+  .opt .ind svg { width: 16px; height: 16px; opacity: 0; color: var(--lago); }
+  .opt[aria-checked="true"] { background: var(--lago); border-color: var(--lago); color: var(--arena); font-weight: 600; }
+  .opt[aria-checked="true"] .ind { border-color: var(--arena); background: var(--arena); }
+  .opt[role="radio"][aria-checked="true"] .ind { box-shadow: inset 0 0 0 5px var(--arena); background: var(--lago); }
   .opt[role="checkbox"][aria-checked="true"] .ind svg { opacity: 1; }
-  .opt[aria-disabled="true"] { opacity: 0.42; }
-  @media (hover: hover) { .opt:not([aria-checked="true"]):not([aria-disabled="true"]):hover, .tile:not([aria-checked="true"]):not([aria-disabled="true"]):hover { border-color: var(--gold); } }
+  .opt[aria-disabled="true"] { opacity: .42; }
+  .opt .lbl small { display: block; margin-top: 3px; font-size: .92rem; font-weight: 400; color: var(--lago-400); }
+  .opt[aria-checked="true"] .lbl small { color: var(--arena); opacity: .8; }
+  @media (hover: hover) { .opt:not([aria-checked="true"]):not([aria-disabled="true"]):hover, .tile:not([aria-checked="true"]):not([aria-disabled="true"]):hover, .chip:not([aria-checked="true"]):hover { border-color: var(--lago); } }
 
   .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
   .tiles > :last-child:nth-child(odd) { grid-column: 1 / -1; }
   .tile {
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
     min-height: 8.5rem; padding: 16px 10px; text-align: center;
-    background: var(--night); color: var(--mist); border: 1.5px solid var(--edge); border-radius: 20px;
-    font-weight: 700; font-size: 1.0625rem; line-height: 1.2;
-    transition: background-color 0.18s ease-out, border-color 0.18s ease-out, color 0.18s ease-out;
+    background: var(--blanco); color: var(--lago); border: 1.5px solid var(--lago-300); border-radius: 18px;
+    font: 600 1.0625rem/1.2 var(--display);
+    transition: background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
   }
-  .tile svg { width: 44px; height: 44px; color: var(--gold); transition: color 0.18s ease-out; }
-  .tile[aria-checked="true"] { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }
-  .tile[aria-checked="true"] svg { color: var(--on-gold); }
-  .tile[aria-disabled="true"] { opacity: 0.42; }
+  .tile svg { width: 44px; height: 44px; color: var(--jade); transition: color .25s var(--ease); }
+  .tile[aria-checked="true"] { background: var(--lago); border-color: var(--lago); color: var(--arena); }
+  .tile[aria-checked="true"] svg { color: var(--arena); }
+  .tile[aria-disabled="true"] { opacity: .42; }
 
   .textarea {
     width: 100%; min-height: 9rem; padding: 14px 16px; border-radius: var(--r);
-    border: 1.5px solid var(--edge); background: var(--night); color: var(--mist);
+    border: 1.5px solid var(--lago-400); background: var(--blanco); color: var(--lago);
     font-size: 1.0625rem; line-height: 1.45; resize: vertical;
   }
-  .textarea::placeholder { color: var(--haze); opacity: 0.8; }
-  .textarea:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.3); }
-  .count { justify-self: end; font-size: 1rem; color: var(--haze); font-variant-numeric: tabular-nums; }
-  .hint { color: var(--gold-hi); min-height: 1.4em; font-weight: 600; }
+  .textarea::placeholder { color: var(--lago-400); opacity: .85; }
+  .textarea:focus { border-color: var(--lago); outline: none; box-shadow: 0 0 0 3px var(--lago-100); }
+  .count { justify-self: end; font-size: 1rem; color: var(--lago-400); font-variant-numeric: tabular-nums; }
+  .hint { color: var(--arcilla-600); min-height: 1.4em; font-weight: 600; }
 
   .dock {
     position: sticky; bottom: 0; margin-top: auto;
     padding-block: 18px calc(16px + env(safe-area-inset-bottom, 0px));
-    background: linear-gradient(to bottom, rgba(11, 15, 26, 0), var(--ink) 28%);
+    background: linear-gradient(to bottom, rgba(243, 239, 231, 0), var(--arena) 28%);
   }
   .next {
     width: 100%; min-height: 3.6rem; border-radius: var(--r); border: 0;
-    background: var(--gold); color: var(--on-gold);
-    font: 800 1.15rem/1 var(--body);
-    box-shadow: 0 12px 28px -16px rgba(176, 141, 87, 0.7);
+    background: var(--arcilla); color: var(--blanco);
+    font: 700 1.1875rem/1 var(--body); transition: background-color .25s var(--ease);
   }
-  .next[aria-disabled="true"] { background: var(--slate); color: var(--haze); box-shadow: none; cursor: not-allowed; }
+  @media (hover: hover) { .next:not([aria-disabled="true"]):hover { background: var(--arcilla-600); } }
+  .next[aria-disabled="true"] { background: var(--niebla-300); color: var(--lago-400); cursor: not-allowed; }
 
   /* ───────── Después de la meta ───────── */
   .after { display: grid; gap: 30px; padding-block: 30px 44px; }
-  .after h2 { font: 800 2.1rem/1 var(--display); text-transform: uppercase; letter-spacing: 0.01em; text-wrap: balance; }
-  .after h3 { font: 700 1.3rem/1.2 var(--body); text-wrap: balance; }
+  .after h2 { font: 700 2rem/1.05 var(--display); letter-spacing: -.02em; text-wrap: balance; }
+  .after h3 { font: 600 1.3rem/1.2 var(--display); letter-spacing: -.01em; text-wrap: balance; }
   .after p { max-width: 42ch; }
-  .muted { color: var(--haze); }
-  .send { display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: var(--r); background: var(--night); border: 1px solid var(--slate); }
-  .send .dot { flex: none; width: 12px; height: 12px; margin-top: 6px; border-radius: 50%; background: var(--haze); }
-  .send[data-s="ok"] .dot { background: var(--ok); }
-  .send[data-s="sending"] .dot { background: var(--gold); animation: blink 1s ease-in-out infinite; }
-  .send[data-s="offline"] .dot, .send[data-s="error"] .dot { background: var(--bad); }
+  .muted { color: var(--lago-400); }
+  .send { display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: var(--r); background: var(--blanco); border: 1px solid var(--niebla-300); }
+  .send .dot { flex: none; width: 12px; height: 12px; margin-top: 6px; border-radius: 50%; background: var(--lago-300); }
+  .send[data-s="ok"] .dot { background: var(--jade); }
+  .send[data-s="sending"] .dot { background: var(--lago); animation: blink 1s ease-in-out infinite; }
+  .send[data-s="offline"] .dot, .send[data-s="error"] .dot { background: var(--arcilla-600); }
   .send .msg { display: grid; gap: 8px; }
   .ticks { display: grid; gap: 12px; }
   .ticks li { display: flex; gap: 12px; align-items: flex-start; }
-  .ticks svg { flex: none; width: 22px; height: 22px; color: var(--gold); margin-top: 2px; }
+  .ticks svg { flex: none; width: 22px; height: 22px; color: var(--jade); margin-top: 2px; }
   .share-row { display: grid; gap: 10px; }
   .ghost {
-    width: 100%; min-height: 3.3rem; border-radius: var(--r); border: 1.5px solid var(--edge);
-    background: transparent; color: var(--mist); font: 700 1.05rem/1 var(--body);
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;
+    width: 100%; min-height: 3.3rem; border-radius: var(--r); border: 1.5px solid var(--lago);
+    background: transparent; color: var(--lago); font: 600 1.05rem/1 var(--body);
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; transition: background .25s var(--ease);
   }
+  @media (hover: hover) { .ghost:hover { background: var(--lago-100); } }
   .ghost svg { width: 20px; height: 20px; }
-  .go.as-link { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+  .go.as-link { text-decoration: none; }
   .go svg { width: 22px; height: 22px; }
-  .share-text { width: 100%; min-height: 6rem; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--edge); background: var(--night); color: var(--mist); font-size: 1rem; line-height: 1.4; resize: none; }
-  details.raw { border-top: 1px solid var(--slate); padding-top: 16px; }
-  details.raw summary { cursor: pointer; font-weight: 700; color: var(--haze); }
-  details.raw pre { margin: 12px 0 0; padding: 14px; border-radius: 12px; background: var(--night); border: 1px solid var(--slate); overflow-x: auto; font: 0.8rem/1.5 ui-monospace, Menlo, Consolas, monospace; }
-  .link { background: none; border: 0; padding: 10px 0; color: var(--mist); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; justify-self: start; }
+  .share-text { width: 100%; min-height: 6rem; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--lago-400); background: var(--blanco); color: var(--lago); font-size: 1rem; line-height: 1.4; resize: none; }
+  details.raw { border-top: 1px solid var(--niebla); padding-top: 16px; }
+  details.raw summary { cursor: pointer; font-weight: 600; color: var(--lago-400); }
+  details.raw pre { margin: 12px 0 0; padding: 14px; border-radius: 12px; background: var(--blanco); border: 1px solid var(--niebla-300); overflow-x: auto; font: .8rem/1.5 ui-monospace, Menlo, Consolas, monospace; }
+  .link { background: none; border: 0; padding: 10px 0; color: var(--lago); font-weight: 600; text-decoration: underline; text-decoration-color: var(--lago-300); text-underline-offset: 4px; justify-self: start; }
 
-  .promise { font-weight: 600; color: var(--mist); max-width: 40ch; }
-  .promise b { color: var(--gold-hi); font-weight: 700; }
-  .cheer { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 14px; background: rgba(176, 141, 87, 0.14); border: 1px solid rgba(176, 141, 87, 0.45); animation: cheerIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
-  .cheer svg { flex: none; width: 26px; height: 26px; color: var(--gold); }
-  .cheer b { color: var(--gold-hi); }
-  .medal { display: grid; gap: 14px; justify-items: center; text-align: center; padding: 24px 20px; border-radius: 20px; background: var(--night); border: 1px solid var(--slate); }
+  .promise { font-weight: 600; color: var(--lago); max-width: 40ch; }
+  .promise b { color: var(--jade); font-weight: 600; }
+  .cheer { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 14px; background: var(--jade-100); border: 1px solid var(--jade-200); animation: cheerIn .5s var(--ease) both; }
+  .cheer svg { flex: none; width: 26px; height: 26px; color: var(--jade); }
+  .cheer b { color: var(--jade); }
+  .medal { display: grid; gap: 14px; justify-items: center; text-align: center; padding: 24px 20px; border-radius: 20px; background: var(--blanco); border: 1px solid var(--niebla-300); }
   .medal svg { width: 150px; height: auto; display: block; }
   .medal .stack { justify-items: center; }
   .medal p { margin-inline: auto; }
   .medal h2 { font-size: 1.7rem; }
-  @keyframes cheerIn { from { opacity: 0.4; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { .cheer { animation: none; } }
-  .enter { animation: settle 0.42s cubic-bezier(0.16, 1, 0.3, 1) both; }
-  @keyframes settle { from { opacity: 0.35; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-  @keyframes blink { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .enter, .send .dot { animation: none !important; } .go, .opt, .tile { transition: none; } }
-  @media (min-width: 720px) { .wrap { max-width: 38rem; } }
-
-  /* ───────── Luz: brillo cálido de medalla, sin cambiar la paleta ni la composición ───────── */
-  .field::before {
-    content: ""; position: absolute; inset: 0 0 auto 0; height: min(78%, 760px); z-index: -2; pointer-events: none;
-    background: radial-gradient(75% 55% at 10% 0%, rgba(201, 166, 107, 0.13), transparent 70%),
-                radial-gradient(55% 45% at 100% 8%, rgba(120, 140, 180, 0.08), transparent 70%);
-  }
-  .headline em { text-shadow: 0 0 36px rgba(201, 166, 107, 0.28); }
-  .band { background: linear-gradient(180deg, #202A3C 0%, var(--night) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04); }
-  .go { display: inline-flex; align-items: center; justify-content: center; gap: 10px; position: relative; overflow: hidden; isolation: isolate; box-shadow: 0 12px 28px -14px rgba(176, 141, 87, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
-  .go::after {
-    content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; transform: translateX(-120%);
-    background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.3) 50%, transparent 65%);
-    animation: sheen 7s ease-in-out 1.4s infinite;
-  }
-  @keyframes sheen { 0%, 72% { transform: translateX(-120%); } 86%, 100% { transform: translateX(120%); } }
-  .next:not([aria-disabled="true"]) { box-shadow: 0 12px 28px -16px rgba(176, 141, 87, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
-  .opt[aria-checked="true"], .tile[aria-checked="true"], .chip[aria-checked="true"] { box-shadow: 0 10px 26px -16px rgba(201, 166, 107, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
-  /* Borde con luz: tarjeta de autoría, medalla, compartir y «pronto» */
-  .who, .medal, .spread, .soon {
-    border: 1px solid transparent;
-    background: linear-gradient(rgba(27, 36, 51, 0.94), rgba(27, 36, 51, 0.94)) padding-box,
-                linear-gradient(150deg, rgba(201, 166, 107, 0.5), rgba(86, 100, 126, 0.28) 38%, rgba(86, 100, 126, 0.14)) border-box;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 18px 40px -28px rgba(0, 0, 0, 0.8);
-  }
-  .medal { background: radial-gradient(60% 42% at 50% 28%, rgba(201, 166, 107, 0.18), transparent 72%) padding-box,
-                       linear-gradient(var(--night), var(--night)) padding-box,
-                       linear-gradient(150deg, rgba(201, 166, 107, 0.5), rgba(86, 100, 126, 0.28) 38%, rgba(86, 100, 126, 0.14)) border-box; }
-  /* Destello que cruza solo el disco de la medalla (círculo del SVG: x 13–87 %, y 38–98 %) */
   .shine { position: relative; }
-  .shine::after {
-    content: ""; position: absolute; left: 13%; right: 13%; top: 38.4%; bottom: 2.4%; border-radius: 50%; pointer-events: none;
-    background: linear-gradient(110deg, transparent 40%, rgba(255, 244, 220, 0.45) 50%, transparent 60%) 100% 0 / 300% 100% no-repeat;
-    animation: glint 1.6s cubic-bezier(0.3, 0.6, 0.2, 1) 0.7s 1 both;
-  }
-  @keyframes glint { to { background-position: 0 0; } }
+  @keyframes cheerIn { from { opacity: .4; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .enter { animation: settle .5s var(--ease) both; }
+  @keyframes settle { from { opacity: .35; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes blink { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .enter, .send .dot, .cheer { animation: none !important; } .go, .opt, .tile { transition: none; } }
+  @media (min-width: 720px) { .wrap { max-width: 38rem; } }
 
   /* ───────── Invitación a compartir: visible, sin estorbar ───────── */
   .nudge {
     display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 2px; text-align: left;
-    background: none; border: 0; border-top: 1px solid var(--slate); color: var(--haze); font-size: 0.98rem; line-height: 1.35;
+    background: none; border: 0; border-top: 1px solid var(--niebla-300); color: var(--lago-400); font-size: .98rem; line-height: 1.35;
   }
-  .nudge b { color: var(--gold-hi); font-weight: 700; }
-  .nudge svg { flex: none; width: 22px; height: 22px; color: var(--gold); }
-  .nudge .chev { width: 18px; height: 18px; margin-left: auto; color: var(--haze); }
+  .nudge b { color: var(--lago); font-weight: 600; }
+  .nudge svg { flex: none; width: 22px; height: 22px; color: var(--jade); }
+  .nudge .chev { width: 18px; height: 18px; margin-left: auto; color: var(--lago-300); }
   @media (hover: hover) { .nudge:hover b { text-decoration: underline; text-underline-offset: 3px; } }
-  .spread { display: grid; gap: 12px; padding: 20px 18px; border-radius: 20px; }
-  .spread .nudge { border-top-color: rgba(86, 100, 126, 0.5); margin-top: 2px; }
-  .eyebrow { font: 800 0.78rem/1 var(--body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-hi); }
-  .opt .lbl small { display: block; margin-top: 3px; font-size: 0.92rem; font-weight: 500; color: var(--haze); }
-  .opt[aria-checked="true"] .lbl small { color: var(--on-gold); opacity: 0.78; }
+  .spread { display: grid; gap: 12px; padding: 20px 18px; border-radius: 20px; background: var(--blanco); border: 1px solid var(--niebla-300); }
+  .eyebrow { font: 500 .75rem/1.1 var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--arcilla-600); }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip { min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--edge); background: var(--night); color: var(--mist); font-weight: 600; font-size: 0.98rem; }
-  .chip[aria-checked="true"] { background: var(--gold); border-color: var(--gold); color: var(--on-gold); font-weight: 700; }
+  .chip { min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--lago-300); background: var(--blanco); color: var(--lago); font-weight: 500; font-size: .98rem; }
+  .chip[aria-checked="true"] { background: var(--lago); border-color: var(--lago); color: var(--arena); font-weight: 600; }
   .kit { display: grid; gap: 14px; }
-  .preview { display: grid; place-items: center; padding: 18px; border-radius: 20px; background: radial-gradient(60% 50% at 50% 35%, rgba(201, 166, 107, 0.14), transparent 75%), var(--night); border: 1px solid var(--slate); min-height: 220px; }
-  .preview img { display: block; width: 100%; max-width: 250px; height: auto; border-radius: 14px; box-shadow: 0 22px 50px -24px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.06); }
+  .preview { display: grid; place-items: center; padding: 18px; border-radius: 20px; background: var(--niebla-200); border: 1px solid var(--niebla-300); min-height: 220px; }
+  .preview img { display: block; width: 100%; max-width: 250px; height: auto; border-radius: 14px; box-shadow: 0 22px 40px -24px rgba(18, 56, 59, .45), 0 0 0 1px rgba(18, 56, 59, .08); }
   .preview[data-f="post"] img { max-width: 290px; }
 
-  /* ───────── Pronto en las tiendas (discreto, al final) ───────── */
-  .soon { display: grid; gap: 12px; justify-items: center; text-align: center; padding: 24px 14px 22px; border-radius: 20px; }
-  .soon .name { font: 800 1.9rem/1 var(--display); letter-spacing: 0.06em; text-transform: uppercase; }
-  .soon .name b { color: var(--gold); font-weight: 800; text-shadow: 0 0 30px rgba(201, 166, 107, 0.3); }
+  /* ───────── La lista de espera y lo que viene (al final) ───────── */
+  .wl .go { margin-top: 4px; }
+  .soon { display: grid; gap: 12px; justify-items: center; text-align: center; padding: 24px 14px 22px; border-radius: 20px; background: var(--blanco); border: 1px solid var(--niebla-300); }
+  .soon .name { display: block; }
+  .soon .name svg { display: block; height: 30px; width: auto; }
   .stores { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 330px; margin-top: 4px; }
-  .store {
-    position: relative; overflow: hidden; display: flex; align-items: center; gap: 8px; min-width: 0; padding: 10px 10px 10px 10px; border-radius: 13px;
-    border: 1px solid transparent; text-align: left;
-    background: linear-gradient(180deg, #121826, #06080D) padding-box,
-                linear-gradient(160deg, rgba(201, 166, 107, 0.65), rgba(86, 100, 126, 0.35) 45%, rgba(86, 100, 126, 0.2)) border-box;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 10px 24px -16px rgba(0, 0, 0, 0.9);
-  }
-  .store::after { content: ""; position: absolute; inset: 0; pointer-events: none; transform: translateX(-130%); background: linear-gradient(110deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%); animation: sheen 9s ease-in-out 2.5s infinite; }
-  .store svg { flex: none; width: 22px; height: 22px; color: var(--gold-hi); }
-  .store small { display: block; font: 700 0.62rem/1 var(--body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--haze); margin-bottom: 4px; }
-  .store span { font: 700 0.95rem/1 var(--body); white-space: nowrap; color: var(--mist); letter-spacing: 0.005em; }
-  @media (prefers-reduced-motion: reduce) { .go::after, .shine::after, .store::after { animation: none; display: none; } }
+  .store { display: flex; align-items: center; gap: 8px; min-width: 0; padding: 10px; border-radius: 12px; text-align: left; background: var(--lago); color: var(--arena); }
+  .store svg { flex: none; width: 22px; height: 22px; color: var(--arena); }
+  .store small { display: block; font: 500 .62rem/1 var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--jade-200); margin-bottom: 4px; }
+  .store span { font: 600 .95rem/1 var(--display); white-space: nowrap; color: var(--arena); }
 </style>
 </head>
 <body>
@@ -551,7 +512,12 @@
   const QUEUE = LOCAL ? 'correr-nic-pendientes-xolo-v1' : 'correr-nic-pendientes-v1';
   const DRAFT_TTL = 2 * 60 * 60 * 1000; // un borrador viejo no debe quedar para la siguiente persona en un teléfono compartido
   const channelFrom = () => {
-    try { const c = (new URLSearchParams(location.search).get('c') || '').toLowerCase().trim(); return /^[a-z0-9_-]{1,40}$/.test(c) ? c : null; } catch (e) { return null; }
+    try {
+      const p = new URLSearchParams(location.search);
+      let c = (p.get('c') || '').toLowerCase().trim(); const k = (p.get('campana') || '').toLowerCase().trim();
+      if (c && /^[a-z0-9_-]{1,60}$/.test(k)) c = (c + '-' + k).slice(0, 40);
+      return /^[a-z0-9_-]{1,40}$/.test(c) ? c : null;
+    } catch (e) { return null; }
   };
   const state = { view: 'welcome', current: 'P1', answers: {}, history: [], big: false, hint: '', final: null, send: 'idle', shareFallback: false, channel: channelFrom(), clientId: null, milestones: [], cheer: null, finisherNo: undefined };
   function save() {
@@ -687,11 +653,13 @@
 
   // ───────── Corredores (pictogramas en canvas) ─────────
   const TAU = Math.PI * 2;
-  const SLATE = [46, 58, 79], MIST = [217, 220, 227];
-  const GOLD = '#B08D57';
-  // Mezcla de pizarra (0) a gris claro (1): carriles al fondo, gente adelante
-  const tintOf = (m) => 'rgb(' + SLATE.map((c, i) => Math.round(c + (MIST[i] - c) * m)).join(',') + ')';
-  const DISPLAY_FONT = '"Big Shoulders Display", "Arial Narrow", sans-serif';
+  const NIEBLA = [219, 224, 222], LAGO = [18, 56, 59];
+  const GOLD = '#C65A3D';   // arcilla: tu corredor y la línea de meta, el único tramo encendido
+  // Mezcla de niebla (0) a lago profundo (1) sobre arena: carriles tenues, gente en tonos de lago
+  const tintOf = (m) => 'rgb(' + NIEBLA.map((c, i) => Math.round(c + (LAGO[i] - c) * m)).join(',') + ')';
+  const DISPLAY_FONT = '"Space Grotesk", system-ui, sans-serif';
+  const LOGO_H = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1167.83 190.00"><g transform="scale(1.43940) translate(-24.918 -62.000)"><path d="M64.055 181.954 C29.867 180.330 26.659 135.927 62.000 132.000 C90.000 129.000 94.000 74.000 126.000 74.000 C160.000 74.000 168.000 126.000 196.000 130.000 C234.000 135.000 232.000 182.000 198.000 182.000 C168.000 182.000 154.000 164.000 128.000 164.000 C118.509 164.000 111.416 166.399 104.874 169.445" stroke="#12383B" fill="none" stroke-width="24" stroke-linecap="butt" stroke-linejoin="round"/><circle cx="64.055" cy="181.954" r="12.0" fill="#12383B"/><circle cx="104.874" cy="169.445" r="12.0" fill="#12383B"/><path d="M138.345 76.546 C151.023 82.054 159.594 95.556 168.386 107.642" stroke="#C65A3D" fill="none" stroke-width="24" stroke-linecap="butt" stroke-linejoin="round"/></g><g transform="translate(365.829 45.000)"><path d="M0.000 0.000 L22.506 0.000 L86.000 100.000 L63.494 100.000ZM63.494 0.000 L86.000 0.000 L22.506 100.000 L0.000 100.000Z" fill="#12383B" fill-rule="nonzero"/><path d="M120.000 50.0 A52.0 52.0 0 1 0 224.000 50.0 A52.0 52.0 0 1 0 120.000 50.0ZM139.000 50.0 A33.0 33.0 0 1 0 205.000 50.0 A33.0 33.0 0 1 0 139.000 50.0Z" fill="#12383B" fill-rule="evenodd"/><path d="M254.000 0.000 L273.000 0.000 L273.000 81.000 L316.000 81.000 L316.000 100.000 L254.000 100.000Z" fill="#12383B" fill-rule="nonzero"/><path d="M338.000 50.0 A52.0 52.0 0 1 0 442.000 50.0 A52.0 52.0 0 1 0 338.000 50.0ZM357.000 50.0 A33.0 33.0 0 1 0 423.000 50.0 A33.0 33.0 0 1 0 357.000 50.0Z" fill="#12383B" fill-rule="evenodd"/><path d="M516.000 0.000 L525.500 0.000 L525.500 100.000 L516.000 100.000ZM542.400 44.500 L553.110 44.500 L582.000 100.000 L571.290 100.000Z" fill="#12383B" fill-rule="nonzero"/><path d="M520.750 0 H553.000 A27.0 27.0 0 0 1 553.000 54 H520.750ZM520.750 9.5 H553.000 A17.5 17.5 0 0 1 553.000 44.5 H520.750Z" fill="#12383B" fill-rule="evenodd"/><path d="M614.0 0 V62.000 A38.0 38.0 0 0 0 690.000 62.000 V0 H680.500 V62.000 A28.5 28.5 0 0 1 623.500 62.000 V0Z" fill="#12383B" fill-rule="nonzero"/><path d="M722.000 0.000 L731.500 0.000 L731.500 100.000 L722.000 100.000ZM792.500 0.000 L802.000 0.000 L802.000 100.000 L792.500 100.000ZM722.000 0.000 L733.514 0.000 L802.000 100.000 L790.486 100.000Z" fill="#12383B" fill-rule="nonzero"/></g></svg>';
+  const logoImg = () => new Promise((ok, no) => { const im = new Image(); im.onload = () => ok(im); im.onerror = no; im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(LOGO_H); });
   const reduceMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const POSE = {
@@ -831,7 +799,7 @@
       const c = this.ctx, W = this.W, H = this.H;
       c.clearRect(0, 0, W, H);
       const size = Math.round(Math.max(18, this.gap * 0.62));
-      c.font = '900 ' + size + 'px ' + DISPLAY_FONT;
+      c.font = '600 ' + size + 'px ' + DISPLAY_FONT;
       this.base.forEach((y, i) => {
         c.fillStyle = tintOf(0.12 + i * 0.03);
         c.fillText(String(LANES.length - i), 12, y - 5);
@@ -842,7 +810,7 @@
         const y0 = this.base[0] - this.gap * 0.95, y1 = this.base[this.base.length - 1] + 3;
         c.strokeStyle = GOLD; c.lineWidth = 3 + 6 * (this.pulse / 0.6);
         c.beginPath(); c.moveTo(this.fx, y0); c.lineTo(this.fx, y1); c.stroke();
-        c.fillStyle = GOLD; c.font = '900 17px ' + DISPLAY_FONT;
+        c.fillStyle = GOLD; c.font = '600 15px ' + DISPLAY_FONT;
         c.textAlign = 'center'; c.fillText('META', this.fx, y0 - 8); c.textAlign = 'start';
       }
       for (const m of this.runners) {
@@ -946,14 +914,18 @@
     } catch (e) {}
   }
 
-  function medalSVG(label, small) {
-    return '<svg viewBox="0 0 200 250" role="img" aria-label="Medalla de finalista' + (label ? ' ' + label : '') + '">' +
-      '<polygon points="56,0 92,0 114,124 78,124" fill="#2E3A4F"/>' +
-      '<polygon points="144,0 108,0 86,124 122,124" fill="#56647E"/>' +
-      '<circle cx="100" cy="170" r="74" fill="#B08D57"/>' +
-      '<circle cx="100" cy="170" r="61" fill="none" stroke="#8C6E40" stroke-width="4"/>' +
-      '<text x="100" y="' + (label ? 186 : 182) + '" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="900" font-size="' + (label ? (label.length > 4 ? 40 : 50) : 34) + '" fill="#0B0F1A">' + (label || 'META') + '</text>' +
-      '<text x="100" y="' + (label ? 208 : 204) + '" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="800" font-size="11" letter-spacing="2" fill="#0B0F1A">FINALISTA</text>' +
+  function medalSVG(label, small, bare) {
+    const sym = 'M64.055 181.954 C29.867 180.330 26.659 135.927 62.000 132.000 C90.000 129.000 94.000 74.000 126.000 74.000 C160.000 74.000 168.000 126.000 196.000 130.000 C234.000 135.000 232.000 182.000 198.000 182.000 C168.000 182.000 154.000 164.000 128.000 164.000 C118.509 164.000 111.416 166.399 104.874 169.445';
+    const seg = 'M138.345 76.546 C151.023 82.054 159.594 95.556 168.386 107.642';
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250" role="img" aria-label="Medalla de finalista' + (label ? ' ' + label : '') + '">' +
+      '<polygon points="56,0 92,0 114,124 78,124" fill="#1F6366"/>' +
+      '<polygon points="144,0 108,0 86,124 122,124" fill="#C65A3D"/>' +
+      '<circle cx="100" cy="170" r="74" fill="#9A8463"/>' +
+      '<circle cx="100" cy="170" r="66" fill="#12383B"/>' +
+      '<circle cx="100" cy="170" r="66" fill="none" stroke="#B5A07A" stroke-width="2"/>' +
+      '<g transform="translate(100 146) scale(0.24) translate(-128 -128)"><path d="' + sym + '" stroke="#F3EFE7" fill="none" stroke-width="24"/><circle cx="64.055" cy="181.954" r="12" fill="#F3EFE7"/><circle cx="104.874" cy="169.445" r="12" fill="#F3EFE7"/><path d="' + seg + '" stroke="#C65A3D" fill="none" stroke-width="24"/></g>' +
+      (bare ? '' : '<text x="100" y="' + (label ? 196 : 194) + '" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="' + (label ? (label.length > 4 ? 22 : 26) : 20) + '" fill="#F3EFE7">' + (label || 'META') + '</text>' +
+      '<text x="100" y="' + (label ? 214 : 212) + '" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="500" font-size="8.5" letter-spacing="2" fill="#BCD0D1">FINALISTA</text>') +
       '</svg>';
   }
   function medalText() {
@@ -968,7 +940,7 @@
     const n = state.finisherNo;
     return '<div class="medal" id="medal">' + '<div class="shine">' + medalSVG(typeof n === 'number' ? '#' + n : '') + '</div>' +
       '<div class="stack"><h2>Tu medalla de finalista</h2><p id="medal-text">' + medalText() + '</p>' +
-      '<button type="button" class="go" data-act="medal">Guardar para historias</button>' +
+      '<button type="button" class="ghost" data-act="medal">Guardar para historias</button>' +
       '<p class="muted">Se guarda como imagen para subirla a tus historias de Instagram.</p></div></div>';
   }
   function updateMedal() {
@@ -979,45 +951,39 @@
 
   // Imagen 1080 × 1920 para historias, con espacio para el sticker de enlace
   async function makeStoryCanvas(n, kids) {
-    for (const f of ['900 200px "Big Shoulders Display"', '800 46px "Big Shoulders Display"', '600 44px Figtree', '700 44px Figtree']) { try { await document.fonts.load(f); } catch (e) {} }
-    const W = 1080, H = 1920, L = 72, cv = document.createElement('canvas');
+    for (const f of ['700 200px "Space Grotesk"', '500 40px "Space Grotesk"', '500 44px Inter', '600 44px Inter', 'italic 400 120px Newsreader']) { try { await document.fonts.load(f); } catch (e) {} }
+    const W = 1080, H = 1920, L = 80, cv = document.createElement('canvas');
     cv.width = W; cv.height = H;
     const x = cv.getContext('2d');
-    x.fillStyle = '#0B0F1A'; x.fillRect(0, 0, W, H);
+    x.fillStyle = '#F3EFE7'; x.fillRect(0, 0, W, H);
     x.textBaseline = 'alphabetic';
-    x.letterSpacing = '5px'; x.font = '800 46px "Big Shoulders Display"';
-    x.fillStyle = '#D9DCE3'; x.fillText('CORRER EN', L, 262); const w0 = x.measureText('CORRER EN ').width;
-    x.fillStyle = '#B08D57'; x.fillText('NICARAGUA', L + w0, 262);
-    const l1 = kids ? 'LLEGAMOS' : 'LLEGUÉ';
-    x.letterSpacing = '2px'; let size = 210; x.font = '900 ' + size + 'px "Big Shoulders Display"';
-    const widest = Math.max(x.measureText(l1).width, x.measureText('A LA META').width);
-    size = Math.min(210, Math.floor(size * Math.min(1, (W - 2 * L) / widest))); x.font = '900 ' + size + 'px "Big Shoulders Display"';
-    const b1 = 262 + 40 + Math.round(size * 0.97), b2 = b1 + size;
-    x.fillStyle = '#D9DCE3'; x.fillText(l1, L - 4, b1); x.fillText('A LA ', L - 4, b2);
-    x.fillStyle = '#B08D57'; x.fillText('META', L - 4 + x.measureText('A LA ').width, b2);
+    x.letterSpacing = '6px'; x.font = '500 36px "Space Grotesk"'; x.fillStyle = '#9E4831'; x.fillText('CORRER EN NICARAGUA', L, 300);
+    // titular: Space Grotesk y la palabra «meta» en la voz editorial
+    x.letterSpacing = '-5px'; x.font = '700 168px "Space Grotesk"'; x.fillStyle = '#12383B';
+    const l1 = kids ? 'Llegamos' : 'Llegué'; x.fillText(l1, L - 6, 470); x.fillText('a la', L - 6, 630);
+    const wl = x.measureText('a la ').width; x.letterSpacing = '-2px'; x.font = 'italic 400 182px Newsreader'; x.fillStyle = '#1F6366'; x.fillText('meta', L - 6 + wl, 630);
+    // la línea de ruta cruza detrás de la medalla
+    x.lineWidth = 40; x.lineCap = 'round'; x.strokeStyle = '#12383B';
+    x.beginPath(); x.moveTo(-40, 1250); x.bezierCurveTo(260, 1210, 330, 990, 560, 1020); x.bezierCurveTo(800, 1050, 840, 1300, 1120, 1240); x.stroke();
     // medalla
-    const cx = W / 2, top = b2 + 56, r = 170, cy = top + 190 + r * 0.55, k = r / 196;
-    x.fillStyle = '#2E3A4F'; x.beginPath(); x.moveTo(cx - 172 * k, top); x.lineTo(cx - 34 * k, top); x.lineTo(cx + 46 * k, cy - r * 0.62); x.lineTo(cx - 92 * k, cy - r * 0.62); x.closePath(); x.fill();
-    x.fillStyle = '#56647E'; x.beginPath(); x.moveTo(cx + 172 * k, top); x.lineTo(cx + 34 * k, top); x.lineTo(cx - 46 * k, cy - r * 0.62); x.lineTo(cx + 92 * k, cy - r * 0.62); x.closePath(); x.fill();
-    x.fillStyle = '#B08D57'; x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.fill();
-    x.strokeStyle = '#8C6E40'; x.lineWidth = 10; x.beginPath(); x.arc(cx, cy, r * 0.83, 0, Math.PI * 2); x.stroke();
-    x.textAlign = 'center'; x.fillStyle = '#0B0F1A'; x.letterSpacing = '0px';
+    const cx = W / 2, cy = 1110, r = 190, k = r / 74;
+    // la medalla sin letras (las fuentes de la página no entran a una imagen SVG); el número se escribe con el canvas
+    try { const im = await new Promise((ok, no) => { const i2 = new Image(); i2.onload = () => ok(i2); i2.onerror = no; i2.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(medalSVG('', false, true)); });
+      x.drawImage(im, cx - 100 * k, cy - 170 * k, 200 * k, 250 * k); } catch (e) {}
     const label = typeof n === 'number' ? '#' + n : 'META';
-    x.font = '900 ' + (label.length > 4 ? 104 : 130) + 'px "Big Shoulders Display"'; x.fillText(label, cx, cy + 40);
-    x.letterSpacing = '6px'; x.font = '800 26px Figtree'; x.fillText('FINALISTA', cx, cy + 90);
+    x.textAlign = 'center'; x.fillStyle = '#F3EFE7'; x.letterSpacing = '-2px'; x.font = '700 ' + (label.length > 4 ? 56 : 66) + 'px "Space Grotesk"'; x.fillText(label, cx, cy + 26 * k);
+    x.letterSpacing = '6px'; x.fillStyle = '#BCD0D1'; x.font = '500 22px "Space Grotesk"'; x.fillText('FINALISTA', cx, cy + 44 * k); x.textAlign = 'start';
     // textos
-    x.letterSpacing = '0px';
-    x.font = '700 46px Figtree'; x.fillStyle = '#D9DCE3';
-    x.fillText(kids ? 'Terminamos la encuesta' : 'Terminé la encuesta', cx, cy + r + 76);
-    x.font = '600 40px Figtree'; x.fillStyle = '#A6ADBD';
-    x.fillText('Una encuesta de ' + BRAND + ' · 2026', cx, cy + r + 128);
-    const yCall = cy + r + 214; // con el titular a 210 px queda en ~1430: el recuadro termina antes de la barra de respuesta
-    x.font = '600 44px Figtree'; x.fillStyle = '#D9DCE3'; x.fillText('¿Y tú? Cuéntanos cómo corres', cx, yCall);
-    const bw = 820, bh = 118, bx = (W - bw) / 2, by = yCall + 28;
-    x.setLineDash([16, 12]); x.lineWidth = 4; x.strokeStyle = '#B08D57';
-    x.beginPath(); x.roundRect(bx, by, bw, bh, 59); x.stroke(); x.setLineDash([]);
-    x.font = '700 44px Figtree'; x.fillStyle = '#B08D57'; x.fillText('corrernicaragua.github.io', cx, by + bh / 2 + 15);
+    x.textAlign = 'center'; x.letterSpacing = '0px';
+    x.font = '600 50px Inter'; x.fillStyle = '#12383B'; x.fillText(kids ? 'Terminamos la encuesta' : 'Terminé la encuesta', cx, cy + r + 96);
+    x.font = '500 40px Inter'; x.fillStyle = '#4D6A6C'; x.fillText('¿Y tú? Cuéntanos cómo corres', cx, cy + r + 156);
+    const bw = 820, bh = 118, bx = (W - bw) / 2, by = cy + r + 186;
+    x.setLineDash([16, 12]); x.lineWidth = 4; x.strokeStyle = '#12383B'; x.beginPath(); x.roundRect(bx, by, bw, bh, 24); x.stroke(); x.setLineDash([]);
+    x.font = '600 42px Inter'; x.fillStyle = '#12383B'; x.fillText('corrernicaragua.github.io', cx, by + bh / 2 + 15);
     x.textAlign = 'start';
+    // el logo abajo a la izquierda, pequeño (manual, redes)
+    try { const lg = await logoImg(); x.drawImage(lg, L, 1648, 300, 300 * 190 / 1167.83); } catch (e) {}
+    x.font = '500 28px Inter'; x.fillStyle = '#4D6A6C'; x.fillText('Una encuesta de ' + BRAND + ' · 2026', L + 330, 1686);
     return cv;
   }
   async function saveMedal(btn) {
@@ -1038,6 +1004,7 @@
     btn.textContent = old;
   }
   if (channelFrom() === 'prueba') window.__medalla = async (n, kids) => (await makeStoryCanvas(n, kids)).toDataURL('image/png');
+  if (channelFrom() === 'prueba') window.__kit = async (format, mode, name) => { sh.mode = mode || 'persona'; if (name) sh.name = name; return (await makeShareCanvas(format)).toDataURL('image/jpeg', .85); };
 
   // ───────── Vistas ─────────
   let scenes = [];
@@ -1172,7 +1139,7 @@
       '<h3>Hay historias que todavía no nos llegan</h3>' +
       '<p class="muted">Sobre todo las de quien corre poco, camina o solo acompaña. Si se la pasas a alguien así, lo que construyamos se va a parecer más a lo que de verdad vive la gente aquí.</p>' +
       '<div class="share-row">' +
-        '<a class="go as-link" href="https://wa.me/?text=' + encodeURIComponent(inviteText()) + '" target="_blank" rel="noopener">' + CHAT_ICON + 'Enviar por WhatsApp</a>' +
+        '<a class="' + (waitlistBox() ? 'ghost' : 'go as-link') + '" href="https://wa.me/?text=' + encodeURIComponent(inviteText()) + '" target="_blank" rel="noopener">' + CHAT_ICON + 'Enviar por WhatsApp</a>' +
         '<button type="button" class="ghost" data-act="kit">' + SHARE_ICON + 'Crear imagen para mis historias</button>' +
         '<button type="button" class="ghost" data-act="copy">' + LINK_ICON + 'Copiar enlace</button>' +
       '</div>' +
@@ -1182,14 +1149,27 @@
     const raw = state.channel === 'prueba'
       ? '<details class="raw"><summary>Lo que se envió (solo en modo prueba)</summary><pre>' + esc(JSON.stringify(state.final, null, 2)) + '</pre></details>'
       : '';
-    return hero + '<div class="wrap after">' + medalBox() + sendBox() + reveal + again + share + soonBox() + raw + '</div>';
+    return hero + '<div class="wrap after">' + medalBox() + sendBox() + reveal + (kids ? '' : waitlistBox()) + again + share + soonBox() + raw + '</div>';
+  }
+
+  // Lista de espera de Xolo Run. Vacío = no se muestra; se llena cuando se publique (falta decidir el dominio y el responsable de los datos).
+  // La invitación lleva solo el canal por el que llegó la persona a la encuesta, nunca sus respuestas: la encuesta sigue siendo anónima.
+  const WAITLIST_URL = '';
+  function waitlistBox() {
+    const base = WAITLIST_URL || (LOCAL ? 'http://localhost:4510/index-ruta-comun.html' : '');
+    if (!base) return '';
+    const q = state.channel === 'prueba' ? 'c=prueba' : 'c=encuesta&campana=' + encodeURIComponent(state.channel || 'directo');
+    return '<div class="spread wl"><p class="eyebrow">Lista de espera</p>' +
+      '<h3>Reclama tu dorsal en ' + BRAND + '</h3>' +
+      '<p class="muted">Anótate y te damos tu número en la fila. Te avisamos primero cuando abramos. Es aparte de la encuesta: tus respuestas siguen siendo anónimas.</p>' +
+      '<a class="go as-link" href="' + esc(base + '?' + q) + '">Quiero mi dorsal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>';
   }
 
   // Cierre discreto: la app que viene, para que se entienda de qué se trató todo
   function soonBox() {
     return '<section class="soon" aria-label="Próximamente">' +
       '<p class="eyebrow">Próximamente</p>' +
-      '<p class="name">Xolo <b>Run</b></p>' +
+      '<p class="name" role="img" aria-label="' + BRAND + '">' + LOGO_H + '</p>' +
       '<p class="muted">Las carreras de Nicaragua, en tu teléfono.</p>' +
       '<div class="stores">' +
         '<span class="store">' + PHONE_ICON + '<span><small>Pronto en</small>Google Play</span></span>' +
@@ -1339,33 +1319,25 @@
 
   // Imagen para compartir: misma tipografía, pista y medalla de la encuesta, con la autoría siempre visible
   async function makeShareCanvas(format) {
-    for (const f of ['900 200px "Big Shoulders Display"', '800 46px "Big Shoulders Display"', '600 44px Figtree', '700 44px Figtree']) { try { await document.fonts.load(f); } catch (e) {} }
+    for (const f of ['700 200px "Space Grotesk"', '500 40px "Space Grotesk"', '500 44px Inter', '600 44px Inter', 'italic 400 200px Newsreader']) { try { await document.fonts.load(f); } catch (e) {} }
     const story = format === 'story', W = 1080, H = story ? 1920 : 1350, L = 80;
     const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
-    const x = cv.getContext('2d'), DISPLAY = '"Big Shoulders Display", "Arial Narrow", sans-serif', BODY = 'Figtree, sans-serif';
+    const x = cv.getContext('2d'), DISPLAY = '"Space Grotesk", sans-serif', BODY = 'Inter, sans-serif';
     const g = sh.mode === 'grupo', n = shName();
-    x.fillStyle = '#0B0F1A'; x.fillRect(0, 0, W, H);
-    // luz cálida arriba a la izquierda y fría a la derecha, como la pantalla de inicio
-    let rg = x.createRadialGradient(W * 0.1, 0, 0, W * 0.1, 0, W * 1.1);
-    rg.addColorStop(0, 'rgba(201,166,107,0.20)'); rg.addColorStop(1, 'rgba(201,166,107,0)'); x.fillStyle = rg; x.fillRect(0, 0, W, H);
-    rg = x.createRadialGradient(W, H * 0.06, 0, W, H * 0.06, W * 0.8);
-    rg.addColorStop(0, 'rgba(120,140,180,0.12)'); rg.addColorStop(1, 'rgba(120,140,180,0)'); x.fillStyle = rg; x.fillRect(0, 0, W, H);
+    x.fillStyle = '#F3EFE7'; x.fillRect(0, 0, W, H);
     x.textBaseline = 'alphabetic';
-    // marca y autoría
+    // marca y autoría: el logo maestro (el nombre nunca se escribe con una fuente) y el nombre de la encuesta
     const top = story ? 210 : 130;
-    x.letterSpacing = '5px'; x.font = '800 46px ' + DISPLAY;
-    x.fillStyle = '#D9DCE3'; x.fillText('CORRER EN', L, top); const w0 = x.measureText('CORRER EN ').width;
-    x.fillStyle = '#B08D57'; x.fillText('NICARAGUA', L + w0, top);
-    x.letterSpacing = '0px'; x.font = '600 36px ' + BODY; x.fillStyle = '#A6ADBD'; x.fillText('Una encuesta de ', L, top + 54);
-    const w1 = x.measureText('Una encuesta de ').width; x.font = '700 36px ' + BODY; x.fillStyle = '#C9A66B'; x.fillText(BRAND, L + w1, top + 54);
+    try { const lg = await logoImg(); x.drawImage(lg, L, top - 52, 340, 340 * 190 / 1167.83); } catch (e) {}
+    x.letterSpacing = '6px'; x.font = '500 30px ' + DISPLAY; x.fillStyle = '#9E4831'; x.fillText('CORRER EN NICARAGUA · ENCUESTA', L, top + 54);
     // titular
-    x.letterSpacing = '2px';
-    const size = Math.min(fitFont(x, 'CUÉNTANOS', '900', DISPLAY, story ? 250 : 170, W - 2 * L), story ? 250 : 170);
-    const lh = Math.round(size * 0.97); let y = top + 70 + lh;
-    x.font = '900 ' + size + 'px ' + DISPLAY; x.fillStyle = '#D9DCE3';
-    x.fillText('CUÉNTANOS', L - 4, y); y += lh; x.fillText('CÓMO', L - 4, y); y += lh;
-    x.save(); x.shadowColor = 'rgba(201,166,107,0.45)'; x.shadowBlur = 40; x.fillStyle = '#B08D57'; x.fillText('CORRES', L - 4, y); x.restore();
-    x.letterSpacing = '0px'; x.font = '500 ' + (story ? 46 : 40) + 'px ' + BODY; x.fillStyle = '#A6ADBD';
+    x.letterSpacing = '-4px';
+    const size = Math.min(fitFont(x, 'Cuéntanos', '700', DISPLAY, story ? 200 : 150, W - 2 * L), story ? 200 : 150);
+    const lh = Math.round(size * 1.0); let y = top + 90 + lh;
+    x.font = '700 ' + size + 'px ' + DISPLAY; x.fillStyle = '#12383B';
+    x.fillText('Cuéntanos', L - 4, y); y += lh; x.fillText('cómo', L - 4, y); y += lh;
+    x.letterSpacing = '-1px'; x.font = 'italic 400 ' + Math.round(size * 1.05) + 'px Newsreader'; x.fillStyle = '#1F6366'; x.fillText('corres', L - 4, y);
+    x.letterSpacing = '0px'; x.font = '500 ' + (story ? 46 : 40) + 'px ' + BODY; x.fillStyle = '#4D6A6C';
     y += story ? 80 : 74; x.fillText('O cómo caminas, o cómo acompañas.', L, y);
     // pista con corredores
     const lanes = story ? 5 : 3, gap = story ? 56 : 50, y0 = y + (story ? 70 : 40);
@@ -1375,49 +1347,49 @@
       x.strokeStyle = tintOf(0.1 + i * 0.04); x.lineWidth = 2; x.beginPath(); x.moveTo(0, by); x.lineTo(W, by); x.stroke();
       kinds[i].forEach((k, j) => {
         const K = KIND[k], h = gap * 1.25 * (0.75 + i * 0.06) * K.scale, you = k === 'you';
-        drawRunner(x, 120 + j * 330 + (i % 2) * 140 + (you ? 120 : 0), by, h, 0.9 + i * 1.7 + j * 2.3, you ? 'run' : k, you ? '#B08D57' : tintOf(0.25 + i * 0.07));
+        drawRunner(x, 120 + j * 330 + (i % 2) * 140 + (you ? 120 : 0), by, h, 0.9 + i * 1.7 + j * 2.3, you ? 'run' : k, you ? '#C65A3D' : tintOf(0.25 + i * 0.07));
       });
     }
     y = y0 + gap * lanes;
     // datos
-    const dot = (cx, cy) => { x.fillStyle = '#B08D57'; x.beginPath(); x.arc(cx, cy, 8, 0, Math.PI * 2); x.fill(); };
+    const dot = (cx, cy) => { x.fillStyle = '#1F6366'; x.beginPath(); x.arc(cx, cy, 8, 0, Math.PI * 2); x.fill(); };
     const facts = ['3 a 8 minutos', 'Anónima', 'Sin nombre ni teléfono'];
     if (story) {
       y += 100;
       // los tres datos en una fila: la letra se ajusta al ancho
-      x.font = '700 40px ' + BODY;
+      x.font = '600 40px ' + BODY;
       const total = facts.reduce((a, f) => a + 28 + x.measureText(f).width, 0) + 40 * (facts.length - 1);
-      const fs = Math.min(40, Math.floor(40 * (W - 2 * L) / total)); x.font = '700 ' + fs + 'px ' + BODY;
+      const fs = Math.min(40, Math.floor(40 * (W - 2 * L) / total)); x.font = '600 ' + fs + 'px ' + BODY;
       const dg = fs * 1.0; let fx = L;
-      facts.forEach((f) => { dot(fx + 8, y - fs * 0.32); x.fillStyle = '#D9DCE3'; x.fillText(f, fx + 26, y); fx += 26 + x.measureText(f).width + dg; });
+      facts.forEach((f) => { dot(fx + 8, y - fs * 0.32); x.fillStyle = '#12383B'; x.fillText(f, fx + 26, y); fx += 26 + x.measureText(f).width + dg; });
       y += 92;
       if (g) {
-        x.fillStyle = '#C9A66B'; fitFont(x, 'Compartida por ' + (n || 'nuestra comunidad'), '700', BODY, 42, W - 2 * L); x.fillText('Compartida por ' + (n || 'nuestra comunidad'), L, y);
-        y += 54; x.fillStyle = '#A6ADBD'; fitFont(x, 'La encuesta es de ' + BRAND + ' y no vemos tus respuestas.', '500', BODY, 34, W - 2 * L); x.fillText('La encuesta es de ' + BRAND + ' y no vemos tus respuestas.', L, y);
-      } else { x.fillStyle = '#A6ADBD'; x.font = '600 38px ' + BODY; x.fillText('Sirve aunque no corras carreras.', L, y); }
+        x.fillStyle = '#1F6366'; fitFont(x, 'Compartida por ' + (n || 'nuestra comunidad'), '600', BODY, 42, W - 2 * L); x.fillText('Compartida por ' + (n || 'nuestra comunidad'), L, y);
+        y += 54; x.fillStyle = '#4D6A6C'; fitFont(x, 'La encuesta es de ' + BRAND + ' y no vemos tus respuestas.', '500', BODY, 34, W - 2 * L); x.fillText('La encuesta es de ' + BRAND + ' y no vemos tus respuestas.', L, y);
+      } else { x.fillStyle = '#4D6A6C'; x.font = '500 38px ' + BODY; x.fillText('Sirve aunque no corras carreras.', L, y); }
       // recuadro para el sticker de enlace
       const bw = W - 2 * L, bh = 120, bx = L, byy = Math.min(H - 300, y + 50);
-      x.setLineDash([16, 12]); x.lineWidth = 4; x.strokeStyle = '#B08D57'; x.beginPath(); x.roundRect(bx, byy, bw, bh, 60); x.stroke(); x.setLineDash([]);
-      x.textAlign = 'center'; x.font = '700 42px ' + BODY; x.fillStyle = '#C9A66B'; x.fillText('Toca el enlace y cuéntanos', W / 2, byy + bh / 2 + 15); x.textAlign = 'start';
+      x.setLineDash([16, 12]); x.lineWidth = 4; x.strokeStyle = '#12383B'; x.beginPath(); x.roundRect(bx, byy, bw, bh, 24); x.stroke(); x.setLineDash([]);
+      x.textAlign = 'center'; x.font = '600 42px ' + BODY; x.fillStyle = '#12383B'; x.fillText('Toca el enlace y cuéntanos', W / 2, byy + bh / 2 + 15); x.textAlign = 'start';
     } else {
       const qs = 300, qx = W - L - qs, qy = H - 70 - qs;
       let fy = qy + 50;
-      x.font = '700 38px ' + BODY;
-      facts.forEach((f) => { dot(L + 8, fy - 12); x.fillStyle = '#D9DCE3'; x.fillText(f, L + 30, fy); fy += 60; });
+      x.font = '600 38px ' + BODY;
+      facts.forEach((f) => { dot(L + 8, fy - 12); x.fillStyle = '#12383B'; x.fillText(f, L + 30, fy); fy += 60; });
       const tw = qx - L - 40;
       fy += 26;
       if (g) {
-        x.fillStyle = '#C9A66B'; fitFont(x, 'Compartida por ' + (n || 'nuestra comunidad'), '700', BODY, 32, tw); x.fillText('Compartida por ' + (n || 'nuestra comunidad'), L, fy);
-        fy += 42; x.fillStyle = '#A6ADBD'; fitFont(x, 'No vemos tus respuestas.', '500', BODY, 30, tw); x.fillText('No vemos tus respuestas.', L, fy);
-      } else { x.fillStyle = '#A6ADBD'; fitFont(x, 'corrernicaragua.github.io', '600', BODY, 32, tw); x.fillText('corrernicaragua.github.io', L, fy); }
+        x.fillStyle = '#1F6366'; fitFont(x, 'Compartida por ' + (n || 'nuestra comunidad'), '600', BODY, 32, tw); x.fillText('Compartida por ' + (n || 'nuestra comunidad'), L, fy);
+        fy += 42; x.fillStyle = '#4D6A6C'; fitFont(x, 'No vemos tus respuestas.', '500', BODY, 30, tw); x.fillText('No vemos tus respuestas.', L, fy);
+      } else { x.fillStyle = '#4D6A6C'; fitFont(x, 'corrernicaragua.github.io', '500', BODY, 32, tw); x.fillText('corrernicaragua.github.io', L, fy); }
       const lib = await loadQR();
       x.fillStyle = '#FFFFFF'; x.beginPath(); x.roundRect(qx, qy, qs, qs, 22); x.fill();
       if (lib) {
         const q = lib(0, 'M'); q.addData(shLink()); q.make();
         const m = q.getModuleCount(), pad = 22, cell = (qs - pad * 2) / m;
-        x.fillStyle = '#0B0F1A';
+        x.fillStyle = '#12383B';
         for (let r = 0; r < m; r++) for (let c = 0; c < m; c++) if (q.isDark(r, c)) x.fillRect(qx + pad + c * cell, qy + pad + r * cell, Math.ceil(cell), Math.ceil(cell));
-      } else { x.fillStyle = '#0B0F1A'; x.textAlign = 'center'; x.font = '700 26px ' + BODY; x.fillText('Escanea', qx + qs / 2, qy + qs / 2); x.textAlign = 'start'; }
+      } else { x.fillStyle = '#12383B'; x.textAlign = 'center'; x.font = '600 26px ' + BODY; x.fillText('Escanea', qx + qs / 2, qy + qs / 2); x.textAlign = 'start'; }
     }
     return cv;
   }

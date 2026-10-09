@@ -1,5 +1,29 @@
 # Cambios de la encuesta «Correr en Nicaragua»
 
+## 2026-10-09 · Rediseño con la marca Xolo Run «Ruta Común» (rama `ruta-comun`, sin publicar)
+
+**Por qué:** Saymond entregó el manual de marca v1.0 de Xolo Run («Ruta Común») y pidió un rediseño total de la encuesta y de la lista de espera, y conectar las dos para captar gente desde las publicaciones de Instagram.
+
+**Preguntas, claves, orden, envío y almacenamiento: sin cambios.** `VERSION` sigue en `2026-10-08-xolo`: los datos siguen siendo comparables.
+
+### Diseño (manual de marca v1.0)
+- Fondo arena `#F3EFE7`, texto lago profundo `#12383B`, jade para acentos y arcilla `#C65A3D` solo para la acción principal de cada pantalla (texto blanco en negrita de 19 px).
+- Space Grotesk para títulos, cifras y etiquetas; Inter para el texto; Newsreader en cursiva solo para la palabra destacada del titular («corres», «meta»).
+- Se quitaron los brillos, destellos y bordes con luz de la versión anterior (el manual pide nada de efectos).
+- Pista de corredores en tonos de lago; tu corredor y la línea de meta en arcilla: el único tramo encendido.
+- Medalla de finalista según el manual: esmalte lago profundo, el símbolo en relieve y cinta jade y arcilla.
+- El nombre de la app al final («Próximamente») y en las imágenes para compartir es el logo maestro del kit: el manual prohíbe escribir XOLO RUN con una fuente.
+- Imágenes para historias y publicaciones, cartel imprimible (`cartel.html`), `og.jpg` y favicon con la nueva marca (favicon y apple-touch-icon del kit).
+
+### Conexión con la lista de espera e Instagram
+- Al final, después de «Lo que estamos construyendo», la tarjeta «Reclama tu dorsal en Xolo Run» lleva a la lista de espera con `?c=encuesta&campana=<canal con que llegó a la encuesta>`. Nunca lleva respuestas: la encuesta sigue siendo anónima.
+- `WAITLIST_URL` está vacío: la tarjeta no se muestra hasta publicar la lista de espera (falta el dominio y el responsable de los datos). En `localhost` apunta a la lista local para probar.
+- Enlaces de Instagram: `?c=ig&campana=<publicación>` se guarda como canal `ig-<publicación>` (mismo formato que acepta la base, sin migración). Ver `lista-espera/INSTAGRAM.md` en el proyecto.
+- Con la tarjeta de la lista de espera visible, «Quiero mi dorsal» es el único botón en arcilla del final; compartir por WhatsApp pasa a botón secundario.
+
+### Técnico
+- En modo prueba (`?c=prueba`): `window.__medalla(n)` y `window.__kit(formato, modo, nombre)` devuelven las imágenes para revisarlas sin enviar nada.
+
 ## 2026-10-08 · Ajuste: tarjeta de autoría más corta
 
 A pedido de Saymond, la tarjeta de la primera pantalla queda solo con «Una encuesta de Xolo Run» y el enlace «Quiénes somos y qué hacemos con tus respuestas». Se quitaron los dos párrafos porque ese enlace ya abre el detalle, incluido que quien comparte la encuesta no la organiza ni ve las respuestas. La autoría sigue visible en la tarjeta y en la barra superior.
